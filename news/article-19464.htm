@@ -7,7 +7,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Nacos Discovery&#8211;服务治理</title>
         <meta name="description" content="什么是服务治理 服务治理是微服务架构中最核心最基本的模块。用于实现各个微服务的自动化注册与发现。服务注册：在服务治理框架中，都会构建一个注册中心，每个服务单元向注册中心登记自己提供服务的详细信息。并在" />
-        <link rel="icon" href="__ADDON__/img/potatsolite/favicon.ico" type="image/x-icon"/>
+        <link rel="icon" href="/assets/website/img/potatsolite/favicon.ico" type="image/x-icon"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="site.webmanifest">
     <!-- CSS here -->
@@ -25,8 +25,7 @@
     <link rel="stylesheet" href="/assets/website/css/potatsolite/slick.css">
     <link rel="stylesheet" href="/assets/website/css/potatsolite/nice-select.css">
     <link rel="stylesheet" href="/assets/website/css/potatsolite/style.css">
-    
-<!-- Google tag (gtag.js) -->
+    <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-D5F3LS5DN7"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -128,7 +127,8 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-9">
-                                              				  				  				<div id="content_views" class="htmledit_views"> <p><strong>什么是服务治理</strong></p> <p>服务治理是微服务架构中最核心最基本的模块。用于实现各个微服务的自动化注册与发现。<br /><strong>服务注册：</strong>在服务治理框架中，都会构建一个注册中心，每个服务单元向注册中心登记自己提供服务的详细信息。并在注册中心形成一张服务的清单，服务注册中心需要以心跳的方式去监测清单中的服务是否可用，如果不可用，需要在服务清单中剔除不可用的服务。<br /><strong>服务发现：</strong> 服务调用方向服务注册中心咨询服务，并获取所有服务的实例清单，实现对具体服务实例的访问。</p> <p><img fetchpriority="high" decoding="async" alt="" height="383" src="http://img.555519.xyz/uploads/20221201/c8c70d728b7f4e32daa7f734a4014793.jpg"></p> <p>通过上面的调用图会发现，除了微服务，还有一个组件是服务注册中心，它是微服务架构非常重要的一个组件，在微服务架构里主要起到了协调者的一个作用。注册中心一般包含如下几个功能：<br /><strong>1. 服务发现：</strong><br /> 服务注册：保存服务提供者和服务调用者的信息<br /> 服务订阅：服务调用者订阅服务提供者的信息，注册中心向订阅者推送提供者的信息<br /><strong>2. 服务配置：</strong><br /> 配置订阅：服务提供者和服务调用者订阅微服务相关的配置<br /> 配置下发：主动将配置推送给服务提供者和服务调用者<br /><strong>3. 服务健康检测</strong><br /> 检测服务提供者的健康情况，如果发现异常，执行服务剔除</p> <h3> 常见的注册中心</h3> <p><strong>Zookeeper</strong><br /> zookeeper是一个分布式服务框架，是Apache Hadoop 的一个子项目，它主要是用来解决分布式应用中经常遇到的一些数据管理问题，如：统一命名服务、状态同步服务、集群管理、分布式应用配置项的管理等。<br /><strong>Eureka</strong><br /> Eureka是Springcloud Netflix中的重要组件，主要作用就是做服务注册和发现。但是现在已经闭源。</p> <p><strong>Consul</strong></p> <p>Consul是基于GO语言开发的开源工具，主要面向分布式，服务化的系统提供服务注册、服务发现和配置管理的功能。 Consul的功能都很实用，其中包括：服务注册/发现、健康检查、 Key/Value存储、多数据中心和分布式一致性保证等特性。 Consul本身只是一个二进制的可执行文件，所以安装和部署都非常简单，只需要从官网下载后，在执行对应的启动脚本即可。<br /><strong>Nacos</strong><br /> Nacos是一个更易于构建云原生应用的动态服务发现、配置管理和服务管理平台。它是 SpringCloud Alibaba 组件之一，负责服务注册发现和服务配置，可以这样认为nacos=eureka+config。</p> <h3>nacos简介及使用</h3> <p>Nacos 致力于帮助您发现、配置和管理微服务。 Nacos 提供了一组简单易用的特性集，帮助您快速实现动态服务发现、服务配置、服务元数据及流量管理。从上面的介绍就可以看出， nacos的作用就是一个注册中心，用来管理注册上来的各个微服务。</p> <p><strong>1、 搭建nacos环境</strong><br /><strong>第1步:</strong> 安装nacos<br /> 下载地址: https://github.com/alibaba/nacos/releases<br /> 下载zip格式的安装包， 然后进行解压缩操作</p> <p><img decoding="async" alt="" height="155" src="http://img.555519.xyz/uploads/20221201/357a4053c82ec5f856f325b96e8342f6.jpg"></p> <p><strong>第2步:</strong> 启动nacos<br /> #切换目录<br /> cd nacos/bin<br /> #命令启动<br /> startup.cmd -m standalone</p> <p><strong>第3步:</strong> 访问nacos<br /> 打开浏览器输入http://localhost:8848/nacos，即可访问服务， 默认密码是nacos/nacos</p> <p><img decoding="async" alt="" height="589" src="http://img.555519.xyz/uploads/20221201/20e79655fe242b3ae99b3a0247279385.jpg"></p> <p><strong>2 、将商品微服务注册到nacos</strong></p> <p>接下来开始修改 shop-product 模块的代码， 将其注册到nacos服务上<br /> 1.&nbsp;在pom.xml中添加nacos的依赖</p> <pre><code>        &lt;!--nacos客户端--&gt;         &lt;dependency&gt;             &lt;groupId&gt;com.alibaba.cloud&lt;/groupId&gt;             &lt;artifactId&gt;spring-cloud-starter-alibaba-nacos-discovery&lt;/artifactId&gt;         &lt;/dependency&gt;</code></pre> <p>2. 在主类上添加@EnableDiscoveryClient注解</p> <p><img loading="lazy" decoding="async" alt="" height="221" src="http://img.555519.xyz/uploads/20221201/b9173d9a735dce65ae03fdcde64cac20.jpg"></p> <p>3 .在application.yml中添加nacos服务的地址</p> <pre><code>spring:     cloud:         nacos:             discovery:                 server-addr: localhost:8848</code></pre> <p>4 .启动服务， 观察nacos的控制面板中是否有注册上来的商品微服务<br /><img loading="lazy" decoding="async" alt="" height="622" src="http://img.555519.xyz/uploads/20221201/d4096502c73e20564bfd40d682c22af3.jpg"></p> <p>重复上面的操作，&nbsp;将&nbsp;shop_order 服务注册到nacos服务上。</p> <p>将shop_order服务新增接口中访问shop-product服务的地址改写成从nacos中获取</p> <p>首先注入</p> <pre><code class="language-java">    @Autowired     private DiscoveryClient discoveryClient;</code></pre> <pre><code class="language-java">        //通过实例名从nacos中获取实例         List&lt;ServiceInstance&gt; instances = discoveryClient.getInstances("service-product");//nacos中的服务名         ServiceInstance instance = instances.get(0);         Product product = restTemplate.getForObject("http://"+instance.getHost()+":"+instance.getPort()+"/product/"+pid, Product.class);</code></pre> </div> 			                <div class="clearfix"></div>
+                                            <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> <p><strong>什么是服务治理</strong></p> <p>服务治理是微服务架构中最核心最基本的模块。用于实现各个微服务的自动化注册与发现。<br /><strong>服务注册：</strong>在服务治理框架中，都会构建一个注册中心，每个服务单元向注册中心登记自己提供服务的详细信息。并在注册中心形成一张服务的清单，服务注册中心需要以心跳的方式去监测清单中的服务是否可用，如果不可用，需要在服务清单中剔除不可用的服务。<br /><strong>服务发现：</strong> 服务调用方向服务注册中心咨询服务，并获取所有服务的实例清单，实现对具体服务实例的访问。</p> <p><img fetchpriority="high" decoding="async" alt="" height="383" src="http://img.555519.xyz/uploads/20221201/c8c70d728b7f4e32daa7f734a4014793.jpg"></p> <p>通过上面的调用图会发现，除了微服务，还有一个组件是服务注册中心，它是微服务架构非常重要的一个组件，在微服务架构里主要起到了协调者的一个作用。注册中心一般包含如下几个功能：<br /><strong>1. 服务发现：</strong><br /> 服务注册：保存服务提供者和服务调用者的信息<br /> 服务订阅：服务调用者订阅服务提供者的信息，注册中心向订阅者推送提供者的信息<br /><strong>2. 服务配置：</strong><br /> 配置订阅：服务提供者和服务调用者订阅微服务相关的配置<br /> 配置下发：主动将配置推送给服务提供者和服务调用者<br /><strong>3. 服务健康检测</strong><br /> 检测服务提供者的健康情况，如果发现异常，执行服务剔除</p> <h3> 常见的注册中心</h3> <p><strong>Zookeeper</strong><br /> zookeeper是一个分布式服务框架，是Apache Hadoop 的一个子项目，它主要是用来解决分布式应用中经常遇到的一些数据管理问题，如：统一命名服务、状态同步服务、集群管理、分布式应用配置项的管理等。<br /><strong>Eureka</strong><br /> Eureka是Springcloud Netflix中的重要组件，主要作用就是做服务注册和发现。但是现在已经闭源。</p> <p><strong>Consul</strong></p> <p>Consul是基于GO语言开发的开源工具，主要面向分布式，服务化的系统提供服务注册、服务发现和配置管理的功能。 Consul的功能都很实用，其中包括：服务注册/发现、健康检查、 Key/Value存储、多数据中心和分布式一致性保证等特性。 Consul本身只是一个二进制的可执行文件，所以安装和部署都非常简单，只需要从官网下载后，在执行对应的启动脚本即可。<br /><strong>Nacos</strong><br /> Nacos是一个更易于构建云原生应用的动态服务发现、配置管理和服务管理平台。它是 SpringCloud Alibaba 组件之一，负责服务注册发现和服务配置，可以这样认为nacos=eureka+config。</p> <h3>nacos简介及使用</h3> <p>Nacos 致力于帮助您发现、配置和管理微服务。 Nacos 提供了一组简单易用的特性集，帮助您快速实现动态服务发现、服务配置、服务元数据及流量管理。从上面的介绍就可以看出， nacos的作用就是一个注册中心，用来管理注册上来的各个微服务。</p> <p><strong>1、 搭建nacos环境</strong><br /><strong>第1步:</strong> 安装nacos<br /> 下载地址: https://github.com/alibaba/nacos/releases<br /> 下载zip格式的安装包， 然后进行解压缩操作</p> <p><img decoding="async" alt="" height="155" src="http://img.555519.xyz/uploads/20221201/357a4053c82ec5f856f325b96e8342f6.jpg"></p> <p><strong>第2步:</strong> 启动nacos<br /> #切换目录<br /> cd nacos/bin<br /> #命令启动<br /> startup.cmd -m standalone</p> <p><strong>第3步:</strong> 访问nacos<br /> 打开浏览器输入http://localhost:8848/nacos，即可访问服务， 默认密码是nacos/nacos</p> <p><img decoding="async" alt="" height="589" src="http://img.555519.xyz/uploads/20221201/20e79655fe242b3ae99b3a0247279385.jpg"></p> <p><strong>2 、将商品微服务注册到nacos</strong></p> <p>接下来开始修改 shop-product 模块的代码， 将其注册到nacos服务上<br /> 1.&nbsp;在pom.xml中添加nacos的依赖</p> <pre><code>        &lt;!--nacos客户端--&gt;         &lt;dependency&gt;             &lt;groupId&gt;com.alibaba.cloud&lt;/groupId&gt;             &lt;artifactId&gt;spring-cloud-starter-alibaba-nacos-discovery&lt;/artifactId&gt;         &lt;/dependency&gt;</code></pre> <p>2. 在主类上添加@EnableDiscoveryClient注解</p> <p><img loading="lazy" decoding="async" alt="" height="221" src="http://img.555519.xyz/uploads/20221201/b9173d9a735dce65ae03fdcde64cac20.jpg"></p> <p>3 .在application.yml中添加nacos服务的地址</p> <pre><code>spring:     cloud:         nacos:             discovery:                 server-addr: localhost:8848</code></pre> <p>4 .启动服务， 观察nacos的控制面板中是否有注册上来的商品微服务<br /><img loading="lazy" decoding="async" alt="" height="622" src="http://img.555519.xyz/uploads/20221201/d4096502c73e20564bfd40d682c22af3.jpg"></p> <p>重复上面的操作，&nbsp;将&nbsp;shop_order 服务注册到nacos服务上。</p> <p>将shop_order服务新增接口中访问shop-product服务的地址改写成从nacos中获取</p> <p>首先注入</p> <pre><code class="language-java">    @Autowired     private DiscoveryClient discoveryClient;</code></pre> <pre><code class="language-java">        //通过实例名从nacos中获取实例         List&lt;ServiceInstance&gt; instances = discoveryClient.getInstances("service-product");//nacos中的服务名         ServiceInstance instance = instances.get(0);         Product product = restTemplate.getForObject("http://"+instance.getHost()+":"+instance.getPort()+"/product/"+pid, Product.class);</code></pre> </div> 			                <div class="clearfix"></div>
                 <div class="col-md-12 mt-5">
                                         <p>上一个：<a href="/news/article-19009.htm">在深圳开个宠物店需要多少钱一个月（深圳宠物店兼职）</a></p>
                                         <p>下一个：<a href="/news/article-19465.htm">狗粮国产排名前十品牌（狗粮国产排名前十品牌有哪些）</a></p>
@@ -141,16 +141,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/news/article-21710.htm" title="南京领养狗狗的地方有哪些（南京哪里有领养狗狗的地方）">南京领养狗狗的地方有哪些（南京哪里有领养狗狗的地方）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-8-28-free-node-subscribe.htm" title="「8月28日」最高速度21.6M/S，2024年Potatso Lite每天更新免费机场订阅节点链接">「8月28日」最高速度21.6M/S，2024年Potatso Lite每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-17-free-high-speed-nodes.htm" title="「9月17日」最高速度22.7M/S，2024年Potatso Lite每天更新免费机场订阅节点链接">「9月17日」最高速度22.7M/S，2024年Potatso Lite每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/news/article-20378.htm" title="符合动物医院法定条件有哪些内容要求（动物医院资质级别有哪些）">符合动物医院法定条件有哪些内容要求（动物医院资质级别有哪些）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-8-free-node-subscribe-links.htm" title="「9月8日」最高速度19.4M/S，2024年Potatso Lite每天更新免费机场订阅节点链接">「9月8日」最高速度19.4M/S，2024年Potatso Lite每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-20-free-node-subscribe-links.htm" title="「9月20日」最高速度19.2M/S，2024年Potatso Lite每天更新免费机场订阅节点链接">「9月20日」最高速度19.2M/S，2024年Potatso Lite每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-20-node-share.htm" title="「10月20日」最高速度18.4M/S，2024年Potatso Lite每天更新免费机场订阅节点链接">「10月20日」最高速度18.4M/S，2024年Potatso Lite每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-10-node-share.htm" title="「10月10日」最高速度20.5M/S，2024年Potatso Lite每天更新免费机场订阅节点链接">「10月10日」最高速度20.5M/S，2024年Potatso Lite每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-26356.htm" title="猫驱虫大概多少钱一次（猫驱虫多少钱一次?）">猫驱虫大概多少钱一次（猫驱虫多少钱一次?）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-15-free-node-subscribe.htm" title="「10月15日」最高速度18M/S，2024年Potatso Lite每天更新免费机场订阅节点链接">「10月15日」最高速度18M/S，2024年Potatso Lite每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-27773.htm" title="进口电动蝶阀优缺点(电动蝶阀国产品牌)">进口电动蝶阀优缺点(电动蝶阀国产品牌)</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-10-free-subscribe-node.htm" title="「9月10日」最高速度21.5M/S，2024年Potatso Lite每天更新免费机场订阅节点链接">「9月10日」最高速度21.5M/S，2024年Potatso Lite每天更新免费机场订阅节点链接</a></li>
                         <li class="py-2"><a href="/free-nodes/2024-10-19-free-high-speed-nodes.htm" title="「10月19日」最高速度22.7M/S，2024年Potatso Lite每天更新免费机场订阅节点链接">「10月19日」最高速度22.7M/S，2024年Potatso Lite每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-19-free-node-subscribe.htm" title="「11月19日」最高速度19.9M/S，2024年Potatso Lite每天更新免费机场订阅节点链接">「11月19日」最高速度19.9M/S，2024年Potatso Lite每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-16-node-share-links.htm" title="「11月16日」最高速度19.3M/S，2024年Potatso Lite每天更新免费机场订阅节点链接">「11月16日」最高速度19.3M/S，2024年Potatso Lite每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-7-free-node-subscribe.htm" title="「9月7日」最高速度20.2M/S，2024年Potatso Lite每天更新免费机场订阅节点链接">「9月7日」最高速度20.2M/S，2024年Potatso Lite每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-13-free-node-subscribe-links.htm" title="「9月13日」最高速度18.4M/S，2024年Potatso Lite每天更新免费机场订阅节点链接">「9月13日」最高速度18.4M/S，2024年Potatso Lite每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-14-node-share.htm" title="「9月14日」最高速度21.9M/S，2024年Potatso Lite每天更新免费机场订阅节点链接">「9月14日」最高速度21.9M/S，2024年Potatso Lite每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-21298.htm" title="动物的疫苗打到人身上有事吗（动物注射疫苗）">动物的疫苗打到人身上有事吗（动物注射疫苗）</a></li>
                     </ul>
     </div>
 </div>
@@ -162,7 +162,7 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">15</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+                <h4><span class="badge" style="float: right;">57</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
@@ -196,6 +196,15 @@
                         <div class="row d-flex align-items-center">
                             <div class="col-xl-12 ">
                                 <div class="footer-copy-right text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
                                     <p>
                                         Potatso Lite机场订阅官网 版权所有
                                         <br />

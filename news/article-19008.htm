@@ -7,7 +7,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Java8新特性之Instant详解</title>
         <meta name="description" content="计算机存储的当前时间，本质上只是一个不断递增的整数。Java提供的System.currentTimeMillis()返回的就是以毫秒表示的当前时间戳。 这个当前时间戳在java.time中以Inst" />
-        <link rel="icon" href="__ADDON__/img/potatsolite/favicon.ico" type="image/x-icon"/>
+        <link rel="icon" href="/assets/website/img/potatsolite/favicon.ico" type="image/x-icon"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="site.webmanifest">
     <!-- CSS here -->
@@ -25,8 +25,7 @@
     <link rel="stylesheet" href="/assets/website/css/potatsolite/slick.css">
     <link rel="stylesheet" href="/assets/website/css/potatsolite/nice-select.css">
     <link rel="stylesheet" href="/assets/website/css/potatsolite/style.css">
-    
-<!-- Google tag (gtag.js) -->
+    <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-D5F3LS5DN7"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -128,7 +127,8 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-9">
-                                              				  				  				<div id="content_views" class="htmledit_views"> <p>计算机存储的当前时间，本质上只是一个不断递增的整数。Java提供的<code>System.currentTimeMillis()</code>返回的就是以毫秒表示的当前时间戳。</p> <p>这个当前时间戳在<code>java.time</code>中以<code>Instant</code>类型表示，我们用<code>Instant.now()</code>获取当前时间戳，效果和<code>System.currentTimeMillis()</code>类似：</p> <pre><code class="language-java">public class Main {     public static void main(String[] args) {         Instant now = Instant.now();         System.out.println(now.getEpochSecond()); // 秒  1568568760         System.out.println(now.toEpochMilli()); // 毫秒  1568568760316     } }</code></pre> <p>实际上，<code>Instant</code>内部只有两个核心字段：</p> <pre><code class="language-java">public final class Instant implements ... {     private final long seconds;     private final int nanos; }</code></pre> <p>一个是以秒为单位的时间戳，一个是更精确的纳秒精度。它和<code>System.currentTimeMillis()</code>返回的<code>long</code>相比，只是多了更高精度的纳秒。</p> <p>既然<code>Instant</code>就是时间戳，那么，给它附加上一个时区，就可以创建出<code>ZonedDateTime</code>：</p> <pre><code class="language-java">// 以指定时间戳创建Instant: Instant ins = Instant.ofEpochSecond(1568568760); ZonedDateTime zdt = ins.atZone(ZoneId.systemDefault()); System.out.println(zdt); // 2019-09-16T01:32:40+08:00[Asia/Shanghai]</code></pre> <p>可见，对于某一个时间戳，给它关联上指定的<code>ZoneId</code>，就得到了<code>ZonedDateTime</code>，继而可以获得了对应时区的<code>LocalDateTime</code>。</p> <p>所以，<code>LocalDateTime</code>，<code>ZoneId</code>，<code>Instant</code>，<code>ZonedDateTime</code>和<code>long</code>都可以互相转换：</p> <pre><code class="language-java">┌─────────────┐ │LocalDateTime│────┐ └─────────────┘    │    ┌─────────────┐                    ├───&gt;│ZonedDateTime│ ┌─────────────┐    │    └─────────────┘ │   ZoneId    │────┘           ▲ └─────────────┘      ┌─────────┴─────────┐                      │                   │                      ▼                   ▼               ┌─────────────┐     ┌─────────────┐               │   Instant   │&lt;───&gt;│    long     │               └─────────────┘     └─────────────┘</code></pre> <p>转换的时候，只需要留意<code>long</code>类型以毫秒还是秒为单位即可。</p> <h3>小结</h3> <p><code>Instant</code>表示高精度时间戳，它可以和<code>ZonedDateTime</code>以及<code>long</code>互相转换。</p> </div> 			                <div class="clearfix"></div>
+                                            <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> <p>计算机存储的当前时间，本质上只是一个不断递增的整数。Java提供的<code>System.currentTimeMillis()</code>返回的就是以毫秒表示的当前时间戳。</p> <p>这个当前时间戳在<code>java.time</code>中以<code>Instant</code>类型表示，我们用<code>Instant.now()</code>获取当前时间戳，效果和<code>System.currentTimeMillis()</code>类似：</p> <pre><code class="language-java">public class Main {     public static void main(String[] args) {         Instant now = Instant.now();         System.out.println(now.getEpochSecond()); // 秒  1568568760         System.out.println(now.toEpochMilli()); // 毫秒  1568568760316     } }</code></pre> <p>实际上，<code>Instant</code>内部只有两个核心字段：</p> <pre><code class="language-java">public final class Instant implements ... {     private final long seconds;     private final int nanos; }</code></pre> <p>一个是以秒为单位的时间戳，一个是更精确的纳秒精度。它和<code>System.currentTimeMillis()</code>返回的<code>long</code>相比，只是多了更高精度的纳秒。</p> <p>既然<code>Instant</code>就是时间戳，那么，给它附加上一个时区，就可以创建出<code>ZonedDateTime</code>：</p> <pre><code class="language-java">// 以指定时间戳创建Instant: Instant ins = Instant.ofEpochSecond(1568568760); ZonedDateTime zdt = ins.atZone(ZoneId.systemDefault()); System.out.println(zdt); // 2019-09-16T01:32:40+08:00[Asia/Shanghai]</code></pre> <p>可见，对于某一个时间戳，给它关联上指定的<code>ZoneId</code>，就得到了<code>ZonedDateTime</code>，继而可以获得了对应时区的<code>LocalDateTime</code>。</p> <p>所以，<code>LocalDateTime</code>，<code>ZoneId</code>，<code>Instant</code>，<code>ZonedDateTime</code>和<code>long</code>都可以互相转换：</p> <pre><code class="language-java">┌─────────────┐ │LocalDateTime│────┐ └─────────────┘    │    ┌─────────────┐                    ├───&gt;│ZonedDateTime│ ┌─────────────┐    │    └─────────────┘ │   ZoneId    │────┘           ▲ └─────────────┘      ┌─────────┴─────────┐                      │                   │                      ▼                   ▼               ┌─────────────┐     ┌─────────────┐               │   Instant   │&lt;───&gt;│    long     │               └─────────────┘     └─────────────┘</code></pre> <p>转换的时候，只需要留意<code>long</code>类型以毫秒还是秒为单位即可。</p> <h3>小结</h3> <p><code>Instant</code>表示高精度时间戳，它可以和<code>ZonedDateTime</code>以及<code>long</code>互相转换。</p> </div> 			                <div class="clearfix"></div>
                 <div class="col-md-12 mt-5">
                                         <p>下一个：<a href="/news/article-19009.htm">在深圳开个宠物店需要多少钱一个月（深圳宠物店兼职）</a></p>
                                     </div>
@@ -140,16 +140,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-10-6-free-node-subscribe-links.htm" title="「10月6日」最高速度18.5M/S，2024年Potatso Lite每天更新免费机场订阅节点链接">「10月6日」最高速度18.5M/S，2024年Potatso Lite每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-12-free-subscribe-node.htm" title="「11月12日」最高速度19.5M/S，2024年Potatso Lite每天更新免费机场订阅节点链接">「11月12日」最高速度19.5M/S，2024年Potatso Lite每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/news/article-19465.htm" title="狗粮国产排名前十品牌（狗粮国产排名前十品牌有哪些）">狗粮国产排名前十品牌（狗粮国产排名前十品牌有哪些）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-2-free-node-subscribe-links.htm" title="「11月2日」最高速度21.9M/S，2024年Potatso Lite每天更新免费机场订阅节点链接">「11月2日」最高速度21.9M/S，2024年Potatso Lite每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/news/article-20836.htm" title="JavaScript如何对二进制值数组进行排序">JavaScript如何对二进制值数组进行排序</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-22-free-node-subscribe.htm" title="「11月22日」最高速度18.2M/S，2024年Potatso Lite每天更新免费机场订阅节点链接">「11月22日」最高速度18.2M/S，2024年Potatso Lite每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-21-node-share-links.htm" title="「9月21日」最高速度21.9M/S，2024年Potatso Lite每天更新免费机场订阅节点链接">「9月21日」最高速度21.9M/S，2024年Potatso Lite每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-7-free-node-subscribe-links.htm" title="「10月7日」最高速度20.9M/S，2024年Potatso Lite每天更新免费机场订阅节点链接">「10月7日」最高速度20.9M/S，2024年Potatso Lite每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-8-26-free-node-subscribe.htm" title="「8月26日」最高速度22.4M/S，2024年Potatso Lite每天更新免费机场订阅节点链接">「8月26日」最高速度22.4M/S，2024年Potatso Lite每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-1-free-node-subscribe-links.htm" title="「12月1日」最高速度21M/S，2024年Potatso Lite每天更新免费机场订阅节点链接">「12月1日」最高速度21M/S，2024年Potatso Lite每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-11-free-subscribe-node.htm" title="「12月11日」最高速度19.8M/S，2024年Potatso Lite每天更新免费机场订阅节点链接">「12月11日」最高速度19.8M/S，2024年Potatso Lite每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-10-node-share.htm" title="「10月10日」最高速度20.5M/S，2024年Potatso Lite每天更新免费机场订阅节点链接">「10月10日」最高速度20.5M/S，2024年Potatso Lite每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-6-free-subscribe-node.htm" title="「12月6日」最高速度18.6M/S，2024年Potatso Lite每天更新免费机场订阅节点链接">「12月6日」最高速度18.6M/S，2024年Potatso Lite每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-12-node-share-links.htm" title="「12月12日」最高速度21.8M/S，2024年Potatso Lite每天更新免费机场订阅节点链接">「12月12日」最高速度21.8M/S，2024年Potatso Lite每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-1-node-share.htm" title="「10月1日」最高速度21.6M/S，2024年Potatso Lite每天更新免费机场订阅节点链接">「10月1日」最高速度21.6M/S，2024年Potatso Lite每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-24-free-node-subscribe.htm" title="「10月24日」最高速度19M/S，2024年Potatso Lite每天更新免费机场订阅节点链接">「10月24日」最高速度19M/S，2024年Potatso Lite每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-7-free-node-subscribe-links.htm" title="「12月7日」最高速度21.7M/S，2024年Potatso Lite每天更新免费机场订阅节点链接">「12月7日」最高速度21.7M/S，2024年Potatso Lite每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-23130.htm" title="动物防疫注射的主要步骤包括（动物防疫注射栏）">动物防疫注射的主要步骤包括（动物防疫注射栏）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-18-free-high-speed-nodes.htm" title="「9月18日」最高速度20.6M/S，2024年Potatso Lite每天更新免费机场订阅节点链接">「9月18日」最高速度20.6M/S，2024年Potatso Lite每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-14-node-share-links.htm" title="「12月14日」最高速度23M/S，2024年Potatso Lite每天更新免费机场订阅节点链接">「12月14日」最高速度23M/S，2024年Potatso Lite每天更新免费机场订阅节点链接</a></li>
                     </ul>
     </div>
 </div>
@@ -161,7 +161,7 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">15</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+                <h4><span class="badge" style="float: right;">57</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
@@ -195,6 +195,15 @@
                         <div class="row d-flex align-items-center">
                             <div class="col-xl-12 ">
                                 <div class="footer-copy-right text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
                                     <p>
                                         Potatso Lite机场订阅官网 版权所有
                                         <br />
