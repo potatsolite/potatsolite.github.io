@@ -1,0 +1,262 @@
+<!doctype html>
+<html class="no-js" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://potatsolite.github.io/news/article-39253.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>URL编码及解码原理</title>
+        <meta name="description" content="URL编码和Base64编码是不一样的，URL编码有专门的标准，目前Java11中使用的是RFC2396（参考：https://www.ietf.org/rfc/rfc2396.txt）。 在 jav" />
+        <link rel="icon" href="/assets/website/img/potatsolite/favicon.ico" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="site.webmanifest">
+    <!-- CSS here -->
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/slicknav.css">
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/flaticon.css">
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/progressbar_barfiller.css">
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/gijgo.css">
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/animate.min.css">
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/animated-headline.css">
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/magnific-popup.css">
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/fontawesome-all.min.css">
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/themify-icons.css">
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/slick.css">
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/nice-select.css">
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D5F3LS5DN7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-D5F3LS5DN7');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- ? Preloader Start -->
+    <div id="preloader-active">
+        <div class="preloader d-flex align-items-center justify-content-center">
+            <div class="preloader-inner position-relative">
+                <div class="preloader-circle"></div>
+                <div class="preloader-img pere-text">
+                    <img src="/assets/website/img/potatsolite/logo/loder.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Preloader Start -->
+    <header>
+        <!-- Header Start -->
+        <div class="header-area header-transparent">
+            <div class="main-header ">
+                <div class="header-bottom  header-sticky">
+                    <div class="container-fluid">
+                        <div class="row align-items-center">
+                            <!-- Logo -->
+                            <div class="col-xl-2 col-lg-2">
+                                <div class="logo">
+                                                                        <a href="/">
+                                        <span>Potatso Lite</span>
+                                    </a>
+                                                                    </div>
+                            </div>
+                            <div class="col-xl-10 col-lg-10">
+                                <div class="menu-wrapper d-flex align-items-center justify-content-end">
+                                    <!-- Main-menu -->
+                                    <div class="main-menu d-none d-lg-block">
+                                        <nav>
+                                            <ul id="navigation">
+                                                                                                <li><a href="/">首页</a></li>
+                                                                                                <li><a href="/free-nodes/">免费节点</a></li>
+                                                                                                <li><a href="/paid-subscribe/">推荐机场</a></li>
+                                                                                                <li><a href="/news/">新闻资讯</a></li>
+                                                                                                <li><a href="#">关于</a></li>
+                                                <li><a href="#">联系</a></li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Mobile Menu -->
+                            <div class="col-12">
+                                <div class="mobile_menu d-block d-lg-none"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Header End -->
+    </header>
+    <main>
+        <!--? slider Area Start-->
+        <section class="slider-area slider-area2">
+            <div class="slider-active">
+                <!-- Single Slider -->
+                <div class="single-slider slider-height2">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-8 col-lg-11 col-md-12">
+                                <div class="hero__caption hero__caption2">
+                                    <h1 data-animation="bounceIn" data-delay="0.2s">URL编码及解码原理</h1>
+                                    <!-- breadcrumb Start-->
+                                    <nav aria-label="breadcrumb">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item"><a href="/">首页</a></li>
+                                            <li class="breadcrumb-item"><a href="/news/">新闻资讯</a></li>
+                                            <li class="breadcrumb-item">正文</li>
+                                        </ol>
+                                    </nav>
+                                    <!-- breadcrumb End -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--? About Area-1 Start -->
+        <section class="about-area1 fix pt-10 py-5">
+            <div class="support-wrapper align-items-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-9">
+                                            <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-github-gist"> <p>URL编码和Base64编码是不一样的，URL编码有专门的标准，目前Java11中使用的是RFC2396（参考：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.ietf.org/rfc/rfc2396.txt"  rel="nofollow">https://www.ietf.org/rfc/rfc2396.txt</a>）。</p> <p>在 java.net.URLEncoder 类的静态代码块中有如下代码：</p> <pre><code class="prism language-java">dontNeedEncoding<span class="token operator">=</span><span class="token keyword">new</span><span class="token class-name">BitSet</span><span class="token punctuation">(</span><span class="token number">256</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token keyword">int</span> i<span class="token punctuation">;</span><span class="token keyword">for</span><span class="token punctuation">(</span>i<span class="token operator">=</span><span class="token string">'a'</span><span class="token punctuation">;</span> i<span class="token operator">&lt;=</span><span class="token string">'z'</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span>     dontNeedEncoding<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token keyword">for</span><span class="token punctuation">(</span>i<span class="token operator">=</span><span class="token string">'A'</span><span class="token punctuation">;</span> i<span class="token operator">&lt;=</span><span class="token string">'Z'</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span>     dontNeedEncoding<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token keyword">for</span><span class="token punctuation">(</span>i<span class="token operator">=</span><span class="token string">'0'</span><span class="token punctuation">;</span> i<span class="token operator">&lt;=</span><span class="token string">'9'</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span>     dontNeedEncoding<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span> dontNeedEncoding<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token string">' '</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">/* encoding a space to a + is done                             * in the encode() method */</span> dontNeedEncoding<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token string">'-'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> dontNeedEncoding<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token string">'_'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> dontNeedEncoding<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token string">'.'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> dontNeedEncoding<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token string">'*'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre> <p>可以发现，除了 a-z、A-Z、0-9、-、_、.、*，不被编码外，其它的都得需要编码，其中空格会被替换为“+”号。</p> <p>如果采用 UTF-8 编码的话，剩余的字符会转为字符对应的 UTF-8 编码的十六进制，然后在十六进制的每个字节前面添加一个“%”，比如“吴”的UTF-8编码十六进制是“E590B4”，一共占三个字节，所以，”吴“的URL编码是”%E5%90%B4“。</p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-39251.htm">Java 中单例模式的正确用法？</a></p>
+                                        <p>下一个：<a href="/news/article-39739.htm">狗粮加工生产线图片（狗粮加工生产线图片大全）</a></p>
+                                    </div>
+                                        </div>
+                        <div class="col-md-3">
+                            <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-37270.htm" title="合肥宠物领养网站（合肥宠物领养网站推荐）">合肥宠物领养网站（合肥宠物领养网站推荐）</a></li>
+                        <li class="py-2"><a href="/news/article-21297.htm" title="动物疫病防治员有什么用（动物疫病防治员有补贴吗）">动物疫病防治员有什么用（动物疫病防治员有补贴吗）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-9-free-high-speed-nodes.htm" title="「11月9日」最高速度21.8M/S，2024年Potatso Lite每天更新免费机场订阅节点链接">「11月9日」最高速度21.8M/S，2024年Potatso Lite每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-15-free-node-subscribe.htm" title="「10月15日」最高速度18M/S，2024年Potatso Lite每天更新免费机场订阅节点链接">「10月15日」最高速度18M/S，2024年Potatso Lite每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-21-free-subscribe-node.htm" title="「11月21日」最高速度22.1M/S，2024年Potatso Lite每天更新免费机场订阅节点链接">「11月21日」最高速度22.1M/S，2024年Potatso Lite每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-22668.htm" title="动物疫苗的种类有哪些类型图片 动物疫苗的种类有哪些类型图片大全">动物疫苗的种类有哪些类型图片 动物疫苗的种类有哪些类型图片大全</a></li>
+                        <li class="py-2"><a href="/news/article-23130.htm" title="动物防疫注射的主要步骤包括（动物防疫注射栏）">动物防疫注射的主要步骤包括（动物防疫注射栏）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-22-free-high-speed-nodes.htm" title="「12月22日」最高速度22.2M/S，2024年Potatso Lite每天更新免费机场订阅分享">「12月22日」最高速度22.2M/S，2024年Potatso Lite每天更新免费机场订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-26356.htm" title="猫驱虫大概多少钱一次（猫驱虫多少钱一次?）">猫驱虫大概多少钱一次（猫驱虫多少钱一次?）</a></li>
+                        <li class="py-2"><a href="/news/article-36131.htm" title="动物医院好评模板100字怎么写的 动物医院好评模板100字怎么写的啊">动物医院好评模板100字怎么写的 动物医院好评模板100字怎么写的啊</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">36</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- About Area End -->
+    </main>
+        <footer>
+        <div class="footer-wrappper footer-bg">
+            <!-- footer-bottom area -->
+            <div class="footer-bottom-area">
+                <div class="container">
+                    <div class="footer-border">
+                        <div class="row d-flex align-items-center">
+                            <div class="col-xl-12 ">
+                                <div class="footer-copy-right text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                                    <p>
+                                        Potatso Lite机场订阅官网 版权所有
+                                        <br />
+                                        Powered by WordPress
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer End-->
+        </div>
+    </footer>
+    <!-- Scroll Up -->
+    <div id="back-top">
+        <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
+    </div>
+    <!-- JS here -->
+    <script src="/assets/website/js/frontend/potatsolite/vendor/modernizr-3.5.0.min.js"></script>
+    <!-- Jquery, Popper, Bootstrap -->
+    <script src="/assets/website/js/frontend/potatsolite/vendor/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/popper.min.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/bootstrap.min.js"></script>
+    <!-- Jquery Mobile Menu -->
+    <script src="/assets/website/js/frontend/potatsolite/jquery.slicknav.min.js"></script>
+    <!-- Jquery Slick , Owl-Carousel Plugins -->
+    <script src="/assets/website/js/frontend/potatsolite/owl.carousel.min.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/slick.min.js"></script>
+    <!-- One Page, Animated-HeadLin -->
+    <script src="/assets/website/js/frontend/potatsolite/wow.min.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/animated.headline.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/jquery.magnific-popup.js"></script>
+    <!-- Date Picker -->
+    <script src="/assets/website/js/frontend/potatsolite/gijgo.min.js"></script>
+    <!-- Nice-select, sticky -->
+    <script src="/assets/website/js/frontend/potatsolite/jquery.nice-select.min.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/jquery.sticky.js"></script>
+    <!-- Progress -->
+    <script src="/assets/website/js/frontend/potatsolite/jquery.barfiller.js"></script>
+    <!-- counter , waypoint,Hover Direction -->
+    <script src="/assets/website/js/frontend/potatsolite/jquery.counterup.min.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/jquery.countdown.min.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/hover-direction-snake.min.js"></script>
+    <!-- contact js -->
+    <script src="/assets/website/js/frontend/potatsolite/contact.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/jquery.form.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/jquery.validate.min.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/mail-script.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/jquery.ajaxchimp.min.js"></script>
+    <!-- Jquery Plugins, main Jquery -->
+    <script src="/assets/website/js/frontend/potatsolite/plugins.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
