@@ -159,6 +159,7 @@
                   				  				  				<div id="content_views" class="htmledit_views"> <div class="content" id="articleContent"> <div class="ad-wrap"> <p><a style="color:#A00;font-weight:bold;" href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://my.oschina.net/u/2663968/blog/3051541"  rel="nofollow">为什么80%的码农都做不了架构师？&gt;&gt;&gt; </a>&nbsp;&nbsp;<img decoding="async" src="http://img.555519.xyz/uploads/20230109/9938184aed04264319bbf83fe8da03ee.jpg" alt="jQuery 判断图片加载完毕例子"></p> </p></div> <p>今天做一个截图功能需要先判断图片是不是加载完了，如果加载完了我们就可以操作了否则可以刷新等待加载了，下面文章整理了基于jquery图片加载判断的例子，大家可参考一下。</p> <p>complete判断图片是否加载了</p> <p>感谢谷歌，找到了好使的方法，简单用法就是：</p> <pre class="brush:js;toolbar: true; auto-links: false;"><code>qim=new&nbsp;Image();//新建一个图片； qim.src=$preload;//图片地址是你准备要加载的地址； if(qim.complete){&nbsp;$("#cxNfloor").html($filetoload);//qim.complete表示这个图片是否加载完毕了 }</code></pre> <p>后来又发现一个方法</p> <pre class="brush:js;toolbar: true; auto-links: false;"><code>$("").load(function(){...});</code></pre> <p>其中选择器是图片的id或class，function里面的方法就是回调函数，在图片加载完成后执行，但是我试验了很多，压根儿不是那么回事，正确的解决方法是：</p> <pre class="brush:js;toolbar: true; auto-links: false;"><code>//jquery的方式 $("#imageId").load(function(){ &nbsp;&nbsp;&nbsp;alert("加载完成！"); });</code></pre> <p>有朋友说使用js是最好的，方法如下</p> <pre class="brush:js;toolbar: true; auto-links: false;"><code>document.getElementById("img2").onload=function(){}</code></pre> <p>在网上找到一段代码</p> <p>例子</p> <pre class="brush:js;toolbar: true; auto-links: false;"><code>function&nbsp;loadImage(url,&nbsp;callback)&nbsp;{ &nbsp;var&nbsp;img&nbsp;=&nbsp;new&nbsp;Image();&nbsp;//创建一个Image对象，实现图片的预下载 &nbsp;img.src&nbsp;=&nbsp;url; &nbsp; &nbsp;if(img.complete)&nbsp;{&nbsp;//&nbsp;如果图片已经存在于浏览器缓存，直接调用回调函数 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;callback.call(img); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return;&nbsp;//&nbsp;直接返回，不用再处理onload事件 &nbsp;&nbsp;&nbsp;&nbsp;} &nbsp;img.onload&nbsp;=&nbsp;function&nbsp;()&nbsp;{&nbsp;//图片下载完毕时异步调用callback函数。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;callback.call(img);//将回调函数的this替换为Image对象 &nbsp;&nbsp;&nbsp;&nbsp;}; };</code></pre> <p>下面是针对多个image的加载判断。</p> <pre class="brush:js;toolbar: true; auto-links: false;"><code>var&nbsp;imgdefereds=[]; $('img').each(function(){ &nbsp;var&nbsp;dfd=$.Deferred(); &nbsp;$(this).bind('load',function(){ &nbsp;&nbsp;dfd.resolve(); &nbsp;}).bind('error',function(){ &nbsp;//图片加载错误，加入错误处理 &nbsp;//&nbsp;dfd.resolve(); &nbsp;}) &nbsp;if(this.complete)&nbsp;setTimeout(function(){ &nbsp;&nbsp;dfd.resolve(); &nbsp;},1000); &nbsp;imgdefereds.push(dfd); }) $.when.apply(null,imgdefereds).done(function(){ &nbsp;&nbsp;&nbsp;&nbsp;callback(); });</code></pre> <p>使用这种方法就可以避免window.onload的不足，不过代码稍显复杂 在性能方面比起window.onload经强很多。</p> <div class="ad-wrap"> <div id="blog-title-ad">    <ins class="adsbygoogle"></ins>   </div> </p></div> </div> <p>转载于:https://my.oschina.net/wolfx/blog/618135</p> </p></div> 			                <div class="clearfix"></div>
                 <div class="col-md-12 mt-5">
                                         <p>上一个：<a href="/news/article-44704.htm">canvas生成带有二维码的海报</a></p>
+                                        <p>下一个：<a href="/news/article-45190.htm">CentOS 7.6环境设置Redis开机自启动</a></p>
                                     </div>
                                         </div>
                         <div class="col-md-3">
@@ -168,16 +169,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/news/article-28232.htm" title="广州猫宠物市场（广州猫宠物市场电话）">广州猫宠物市场（广州猫宠物市场电话）</a></li>
-                        <li class="py-2"><a href="/news/article-20838.htm" title="动物疫苗是什么单位的 动物疫苗是什么单位的工作">动物疫苗是什么单位的 动物疫苗是什么单位的工作</a></li>
-                        <li class="py-2"><a href="/news/article-38747.htm" title="拼多多58元开无货源网店是真的吗知乎（拼多多500元开店无货源）">拼多多58元开无货源网店是真的吗知乎（拼多多500元开店无货源）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-1-22-free-node-subscribe.htm" title="「1月22日」最高速度19.4M/S，2025年Potatso Lite每天更新免费机场订阅分享">「1月22日」最高速度19.4M/S，2025年Potatso Lite每天更新免费机场订阅分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-20-node-share.htm" title="「10月20日」最高速度18.4M/S，2024年Potatso Lite每天更新免费机场订阅节点链接">「10月20日」最高速度18.4M/S，2024年Potatso Lite每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-9-free-high-speed-nodes.htm" title="「11月9日」最高速度21.8M/S，2024年Potatso Lite每天更新免费机场订阅节点链接">「11月9日」最高速度21.8M/S，2024年Potatso Lite每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-19-node-share.htm" title="「12月19日」最高速度21.5M/S，2024年Potatso Lite每天更新免费机场订阅节点链接">「12月19日」最高速度21.5M/S，2024年Potatso Lite每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-25-node-share-links.htm" title="「12月25日」最高速度22.9M/S，2024年Potatso Lite每天更新免费机场订阅分享">「12月25日」最高速度22.9M/S，2024年Potatso Lite每天更新免费机场订阅分享</a></li>
-                        <li class="py-2"><a href="/news/article-38255.htm" title="Spring Cloud入门-Config分布式配置中心(Hoxton版本)">Spring Cloud入门-Config分布式配置中心(Hoxton版本)</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-1-15-node-share.htm" title="「1月15日」最高速度19.1M/S，2025年Potatso Lite每天更新免费机场订阅分享">「1月15日」最高速度19.1M/S，2025年Potatso Lite每天更新免费机场订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-33414.htm" title="宠物领养协议具有法律效应吗为什么还要签字（宠物领养协议需要身份证复印件吗）">宠物领养协议具有法律效应吗为什么还要签字（宠物领养协议需要身份证复印件吗）</a></li>
+                        <li class="py-2"><a href="/news/article-27770.htm" title="南京领养狗狗的平台（南京领养狗狗的平台电话）">南京领养狗狗的平台（南京领养狗狗的平台电话）</a></li>
+                        <li class="py-2"><a href="/news/article-37271.htm" title="一个女人在家养殖什么赚钱（一个女人在家养殖什么赚钱养鸡在那里）">一个女人在家养殖什么赚钱（一个女人在家养殖什么赚钱养鸡在那里）</a></li>
+                        <li class="py-2"><a href="/news/article-29162.htm" title="成都宠物托运电话多少号码（成都宠物托运成都宠物托运信息）">成都宠物托运电话多少号码（成都宠物托运成都宠物托运信息）</a></li>
+                        <li class="py-2"><a href="/news/article-40730.htm" title="宠爱国际宠物医院三里屯（北京宠爱国际中心医院）">宠爱国际宠物医院三里屯（北京宠爱国际中心医院）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-9-free-node-subscribe-links.htm" title="「1月9日」最高速度18.9M/S，2025年Potatso Lite每天更新免费机场订阅分享">「1月9日」最高速度18.9M/S，2025年Potatso Lite每天更新免费机场订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-31430.htm" title="宠爱国际宠物医院怎么样啊（宠爱国际动物医疗机构有限公司）">宠爱国际宠物医院怎么样啊（宠爱国际动物医疗机构有限公司）</a></li>
+                        <li class="py-2"><a href="/news/article-34397.htm" title="长春宠物同城领养（长春市领养宠物狗）">长春宠物同城领养（长春市领养宠物狗）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-17-free-subscribe-node.htm" title="「10月17日」最高速度19.7M/S，2024年Potatso Lite每天更新免费机场订阅节点链接">「10月17日」最高速度19.7M/S，2024年Potatso Lite每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-24981.htm" title="附近哪里有狗粮卖（附近哪里有狗粮卖的地方）">附近哪里有狗粮卖（附近哪里有狗粮卖的地方）</a></li>
                     </ul>
     </div>
 </div>
@@ -189,7 +190,7 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">66</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+                <h4><span class="badge" style="float: right;">72</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>

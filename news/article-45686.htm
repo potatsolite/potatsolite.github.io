@@ -1,0 +1,290 @@
+<!doctype html>
+<html class="no-js" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://potatsolite.github.io/news/article-45686.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Rabbit MQ 怎么保证可靠性、幂等性、消费顺序</title>
+        <meta name="description" content="RabbitMQ如何保证消息的可靠性 RabbitMQ消息丢失的三种情况 生产者弄丢消息时的解决方法  方法一：生产者在发送数据之前开启RabbitMQ的事务(采用该种方法由于事务机制，会导致吞吐量下" />
+        <link rel="icon" href="/assets/website/img/potatsolite/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Potatso Lite机场订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://potatsolite.github.io/news/article-45686.htm" />
+    <meta property="og:site_name" content="Potatso Lite机场订阅官网" />
+    <meta property="og:title" content="Rabbit MQ 怎么保证可靠性、幂等性、消费顺序" />
+    <meta property="og:image" content="https://potatsolite.github.io/uploads/20240823-1/e628fb076a92ed485fb4ce2b893e4a6d.webp" />
+        <meta property="og:release_date" content="2025-01-24T09:28:46" />
+    <meta property="og:updated_time" content="2025-01-24T09:28:46" />
+        <meta property="og:description" content="RabbitMQ如何保证消息的可靠性 RabbitMQ消息丢失的三种情况 生产者弄丢消息时的解决方法  方法一：生产者在发送数据之前开启RabbitMQ的事务(采用该种方法由于事务机制，会导致吞吐量下" />
+        
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="site.webmanifest">
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Rabbit MQ 怎么保证可靠性、幂等性、消费顺序">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <!-- CSS here -->
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/slicknav.css">
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/flaticon.css">
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/progressbar_barfiller.css">
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/gijgo.css">
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/animate.min.css">
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/animated-headline.css">
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/magnific-popup.css">
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/fontawesome-all.min.css">
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/themify-icons.css">
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/slick.css">
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/nice-select.css">
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D5F3LS5DN7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-D5F3LS5DN7');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- ? Preloader Start -->
+    <div id="preloader-active">
+        <div class="preloader d-flex align-items-center justify-content-center">
+            <div class="preloader-inner position-relative">
+                <div class="preloader-circle"></div>
+                <div class="preloader-img pere-text">
+                    <img src="/assets/website/img/potatsolite/logo/loder.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Preloader Start -->
+    <header>
+        <!-- Header Start -->
+        <div class="header-area header-transparent">
+            <div class="main-header ">
+                <div class="header-bottom  header-sticky">
+                    <div class="container-fluid">
+                        <div class="row align-items-center">
+                            <!-- Logo -->
+                            <div class="col-xl-2 col-lg-2">
+                                <div class="logo">
+                                                                        <a href="/">
+                                        <span>Potatso Lite</span>
+                                    </a>
+                                                                    </div>
+                            </div>
+                            <div class="col-xl-10 col-lg-10">
+                                <div class="menu-wrapper d-flex align-items-center justify-content-end">
+                                    <!-- Main-menu -->
+                                    <div class="main-menu d-none d-lg-block">
+                                        <nav>
+                                            <ul id="navigation">
+                                                                                                <li><a href="/">首页</a></li>
+                                                                                                <li><a href="/free-nodes/">免费节点</a></li>
+                                                                                                <li><a href="/paid-subscribe/">推荐机场</a></li>
+                                                                                                <li><a href="/news/">新闻资讯</a></li>
+                                                                                                <li><a href="#">关于</a></li>
+                                                <li><a href="#">联系</a></li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Mobile Menu -->
+                            <div class="col-12">
+                                <div class="mobile_menu d-block d-lg-none"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Header End -->
+    </header>
+    <main>
+        <!--? slider Area Start-->
+        <section class="slider-area slider-area2">
+            <div class="slider-active">
+                <!-- Single Slider -->
+                <div class="single-slider slider-height2">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-8 col-lg-11 col-md-12">
+                                <div class="hero__caption hero__caption2">
+                                    <h1 data-animation="bounceIn" data-delay="0.2s">Rabbit MQ 怎么保证可靠性、幂等性、消费顺序</h1>
+                                    <!-- breadcrumb Start-->
+                                    <nav aria-label="breadcrumb">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item"><a href="/">首页</a></li>
+                                            <li class="breadcrumb-item"><a href="/news/">新闻资讯</a></li>
+                                            <li class="breadcrumb-item">正文</li>
+                                        </ol>
+                                    </nav>
+                                    <!-- breadcrumb End -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--? About Area-1 Start -->
+        <section class="about-area1 fix pt-10 py-5">
+            <div class="support-wrapper align-items-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-9">
+                                            <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<h2 id="rabbitmq如何保证消息的可靠性">RabbitMQ如何保证消息的可靠性</h2> <p>RabbitMQ消息丢失的三种情况<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/e8c3f6b523dbcb8315401a891c921bd8.jpg" alt="Rabbit MQ 怎么保证可靠性、幂等性、消费顺序"></p> <h3 id="生产者弄丢消息时的解决方法">生产者弄丢消息时的解决方法</h3> <ul> <li>方法一：生产者在发送数据之前开启RabbitMQ的事务(采用该种方法由于事务机制，会导致吞吐量下降，太消耗性能。)</li> <li>方法二：开启confirm模式(使用springboot时在application.yml配置文件中做如下配置，实现confirm回调接口，生产者发送消息时设置confirm回调)</li> <li>小结： 事务机制和 confirm机制最大的不同在于，事务机制是同步的，你提交一个事务之后会阻塞在那儿，但是 confirm机制是异步的，你发送个消息之后就可以发送下一个消息，RabbitMQ 接收了之后会异步回调confirm接口通知你这个消息接收到了。一般在生产者这块避免数据丢失，建议使用用 confirm 机制。</li> </ul> <h3 id="mq自身弄丢消息时的解决方法">MQ自身弄丢消息时的解决方法</h3> <ul> <li>第一步： 创建queue时设置为持久化队列，这样可以保证RabbitMQ持久化queue的元数据，此时还是不会持久化queue里的数据。</li> <li>第二步： 发送消息时将消息的deliveryMode设置为持久化，此时queue中的消息才会持久化到磁盘。</li> <li>总结：同时设置queue和message持久化以后，RabbitMQ 挂了再次重启，也会从磁盘上重启恢复 queue，恢复这个 queue 里的数据，保证数据不会丢失。</li> <li>但是：但是就算开启持久化机制，也有可能出现上面说的的消息落盘时服务挂掉的情况。这时可以考虑结合生产者的confirm机制来处理，持久化机制开启后消息只有成功落盘时才会通过confirm回调通知生产者，所以可以考虑生产者在生产消息时维护一个正在等待消息发送确认的队列，如果超过一定时间还没从confirm中收到对应消息的反馈，自动进行重发处理。</li> </ul> <h3 id="消费者自身弄丢消息时的解决方法">消费者自身弄丢消息时的解决方法</h3> <ul> <li>方法：关闭自动ACK，使用手动ACK。RabbitMQ中有一个ACK机制，默认情况下消费者接收到到消息，RabbitMQ会自动提交ACK，之后这条消息就不会再发送给消费者了。我们可以更改为手动ACK模式，每次处理完消息之后，再手动ack一下。不过这样可能会出现刚处理完还没手动ack确认，消费者挂了，导致消息重复消费，不过我们只需要保证幂等性就好了，重复消费也不会造成问题。</li> <li>步骤一：在springboot中修改application.yml配置文件更改为手动ack模式</li> <li>步骤二：手动实现ack的callback</li> </ul> <h3 id="rabbitmq保证消息可靠性总结">RabbitMQ保证消息可靠性总结</h3> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/24bd0473654a16f25c73c0abd38469c2.jpg" alt="Rabbit MQ 怎么保证可靠性、幂等性、消费顺序"></p> <h2 id="rabbitmq如何保证消息的幂等性">RabbitMQ如何保证消息的幂等性</h2> <h3 id="如何保证消息队列消费的幂等性这一块应该还是要结合业务来选择合适的方法有以下几个方案">如何保证消息队列消费的幂等性，这一块应该还是要结合业务来选择合适的方法，有以下几个方案：</h3> <ul> <li>消费数据为了单纯的写入数据库，可以先根据主键查询数据是否已经存在，如果已经存在了就没必要插入了。或者直接插入也没问题，因为可以利用主键的唯一性来保证数据不会重复插入，重复插入只会报错，但不会出现脏数据。</li> <li>消费数据只是为了缓存到redis当中，这种情况就是直接往redis中set value了，天然的幂等性。</li> <li>针对复杂的业务情况，可以在生产消息的时候给每个消息加一个全局唯一ID，消费者消费消息时根据这个ID去redis当中查询之前是否消费过。如果没有消费过，就进行消费并将这个消息的ID写入到redis当中。如果已经消费过了，就无需再次消费了。</li> </ul> <h2 id="rabbitmq如何保证消息的顺序性">RabbitMQ如何保证消息的顺序性</h2> <h3 id="出现消费顺序错乱的情况">出现消费顺序错乱的情况</h3> <ul> <li>为了提高处理效率，一个queue存在多个consumer</li> <li>一个queue只存在一个consumer，但是为了提高处理效率，consumer中使用了多线程进行处理</li> </ul> <h3 id="保证消息顺序性的方法">保证消息顺序性的方法</h3> <ul> <li>将原来的一个queue拆分成多个queue，每个queue都有一个自己的consumer。该种方案的核心是生产者在投递消息的时候根据业务数据关键值（例如订单ID哈希值对订单队列数取模）来将需要保证先后顺序的同一类数据（同一个订单的数据） 发送到同一个queue当中。</li> <li>一个queue就一个consumer，在consumer中维护多个内存队列，根据业务数据关键值（例如订单ID哈希值对内存队列数取模）将消息加入到不同的内存队列中，然后多个真正负责处理消息的线程去各自对应的内存队列当中获取消息进行消费。</li> </ul> <h3 id="rabbitmq保证消息顺序性总结">RabbitMQ保证消息顺序性总结：</h3> <p>核心思路就是根据业务数据关键值划分成多个消息集合，而且每个消息集合中的消息数据都是有序的，每个消息集合有自己独立的一个consumer。多个消息集合的存在保证了消息消费的效率，每个有序的消息集合对应单个的consumer也保证了消息消费时的有序性。</p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-45191.htm">动物疫苗去哪里买便宜些（动物疫苗在哪里有卖的）</a></p>
+                                        <p>下一个：<a href="/news/article-45688.htm">我的位置最近的仓鼠专卖店（仓鼠店地址）</a></p>
+                                    </div>
+                                        </div>
+                        <div class="col-md-3">
+                            <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-10-29-node-share.htm" title="「10月29日」最高速度20.4M/S，2024年Potatso Lite每天更新免费机场订阅节点链接">「10月29日」最高速度20.4M/S，2024年Potatso Lite每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-33917.htm" title="广州宠物领养网免费地址查询（广州宠物领养网免费地址查询官网）">广州宠物领养网免费地址查询（广州宠物领养网免费地址查询官网）</a></li>
+                        <li class="py-2"><a href="/news/article-44223.htm" title="1970年农历四月二十七是什么星座女 1970年农历四月二十七是什么星座女生">1970年农历四月二十七是什么星座女 1970年农历四月二十七是什么星座女生</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-25-free-subscribe-node.htm" title="「11月25日」最高速度19.9M/S，2024年Potatso Lite每天更新免费机场订阅节点链接">「11月25日」最高速度19.9M/S，2024年Potatso Lite每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-30-node-share.htm" title="「12月30日」最高速度22M/S，2024年Potatso Lite每天更新免费机场订阅分享">「12月30日」最高速度22M/S，2024年Potatso Lite每天更新免费机场订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-23129.htm" title="宠物领养中心是什么单位的（宠物领养所）">宠物领养中心是什么单位的（宠物领养所）</a></li>
+                        <li class="py-2"><a href="/news/article-37785.htm" title="VUE excel 特殊表格处理">VUE excel 特殊表格处理</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-15-node-share.htm" title="「12月15日」最高速度21M/S，2024年Potatso Lite每天更新免费机场订阅节点链接">「12月15日」最高速度21M/S，2024年Potatso Lite每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-23-node-share.htm" title="「1月23日」最高速度20.1M/S，2025年Potatso Lite每天更新免费机场订阅分享">「1月23日」最高速度20.1M/S，2025年Potatso Lite每天更新免费机场订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-24438.htm" title="宠物粮怎么卖 宠物粮怎么卖出去">宠物粮怎么卖 宠物粮怎么卖出去</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">72</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- About Area End -->
+    </main>
+        <footer>
+        <div class="footer-wrappper footer-bg">
+            <!-- footer-bottom area -->
+            <div class="footer-bottom-area">
+                <div class="container">
+                    <div class="footer-border">
+                        <div class="row d-flex align-items-center">
+                            <div class="col-xl-12 ">
+                                <div class="footer-copy-right text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                                    <p>
+                                        Potatso Lite机场订阅官网 版权所有
+                                        <br />
+                                        Powered by WordPress
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer End-->
+        </div>
+    </footer>
+    <!-- Scroll Up -->
+    <div id="back-top">
+        <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
+    </div>
+    <!-- JS here -->
+    <script src="/assets/website/js/frontend/potatsolite/vendor/modernizr-3.5.0.min.js"></script>
+    <!-- Jquery, Popper, Bootstrap -->
+    <script src="/assets/website/js/frontend/potatsolite/vendor/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/popper.min.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/bootstrap.min.js"></script>
+    <!-- Jquery Mobile Menu -->
+    <script src="/assets/website/js/frontend/potatsolite/jquery.slicknav.min.js"></script>
+    <!-- Jquery Slick , Owl-Carousel Plugins -->
+    <script src="/assets/website/js/frontend/potatsolite/owl.carousel.min.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/slick.min.js"></script>
+    <!-- One Page, Animated-HeadLin -->
+    <script src="/assets/website/js/frontend/potatsolite/wow.min.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/animated.headline.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/jquery.magnific-popup.js"></script>
+    <!-- Date Picker -->
+    <script src="/assets/website/js/frontend/potatsolite/gijgo.min.js"></script>
+    <!-- Nice-select, sticky -->
+    <script src="/assets/website/js/frontend/potatsolite/jquery.nice-select.min.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/jquery.sticky.js"></script>
+    <!-- Progress -->
+    <script src="/assets/website/js/frontend/potatsolite/jquery.barfiller.js"></script>
+    <!-- counter , waypoint,Hover Direction -->
+    <script src="/assets/website/js/frontend/potatsolite/jquery.counterup.min.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/jquery.countdown.min.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/hover-direction-snake.min.js"></script>
+    <!-- contact js -->
+    <script src="/assets/website/js/frontend/potatsolite/contact.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/jquery.form.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/jquery.validate.min.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/mail-script.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/jquery.ajaxchimp.min.js"></script>
+    <!-- Jquery Plugins, main Jquery -->
+    <script src="/assets/website/js/frontend/potatsolite/plugins.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
