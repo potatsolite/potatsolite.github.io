@@ -1,0 +1,290 @@
+<!doctype html>
+<html class="no-js" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://potatsolite.github.io/news/article-46197.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>hibernate框架使用详解一</title>
+        <meta name="description" content="hibernate框架使用详解一  一、hibernate的介绍 二、hibernate的使用   2.1 hibernate框架的搭建   2.1.1 导包 2.1.2创建数据库表、实体对象 2.1" />
+        <link rel="icon" href="/assets/website/img/potatsolite/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Potatso Lite机场订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://potatsolite.github.io/news/article-46197.htm" />
+    <meta property="og:site_name" content="Potatso Lite机场订阅官网" />
+    <meta property="og:title" content="hibernate框架使用详解一" />
+    <meta property="og:image" content="https://potatsolite.github.io/uploads/20240823-1/de6bcb611f9d849cfdee5a5924474c75.webp" />
+        <meta property="og:release_date" content="2025-01-25T09:54:00" />
+    <meta property="og:updated_time" content="2025-01-25T09:54:00" />
+        <meta property="og:description" content="hibernate框架使用详解一  一、hibernate的介绍 二、hibernate的使用   2.1 hibernate框架的搭建   2.1.1 导包 2.1.2创建数据库表、实体对象 2.1" />
+        
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="site.webmanifest">
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="hibernate框架使用详解一">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <!-- CSS here -->
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/slicknav.css">
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/flaticon.css">
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/progressbar_barfiller.css">
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/gijgo.css">
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/animate.min.css">
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/animated-headline.css">
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/magnific-popup.css">
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/fontawesome-all.min.css">
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/themify-icons.css">
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/slick.css">
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/nice-select.css">
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D5F3LS5DN7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-D5F3LS5DN7');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- ? Preloader Start -->
+    <div id="preloader-active">
+        <div class="preloader d-flex align-items-center justify-content-center">
+            <div class="preloader-inner position-relative">
+                <div class="preloader-circle"></div>
+                <div class="preloader-img pere-text">
+                    <img src="/assets/website/img/potatsolite/logo/loder.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Preloader Start -->
+    <header>
+        <!-- Header Start -->
+        <div class="header-area header-transparent">
+            <div class="main-header ">
+                <div class="header-bottom  header-sticky">
+                    <div class="container-fluid">
+                        <div class="row align-items-center">
+                            <!-- Logo -->
+                            <div class="col-xl-2 col-lg-2">
+                                <div class="logo">
+                                                                        <a href="/">
+                                        <span>Potatso Lite</span>
+                                    </a>
+                                                                    </div>
+                            </div>
+                            <div class="col-xl-10 col-lg-10">
+                                <div class="menu-wrapper d-flex align-items-center justify-content-end">
+                                    <!-- Main-menu -->
+                                    <div class="main-menu d-none d-lg-block">
+                                        <nav>
+                                            <ul id="navigation">
+                                                                                                <li><a href="/">首页</a></li>
+                                                                                                <li><a href="/free-nodes/">免费节点</a></li>
+                                                                                                <li><a href="/paid-subscribe/">推荐机场</a></li>
+                                                                                                <li><a href="/news/">新闻资讯</a></li>
+                                                                                                <li><a href="#">关于</a></li>
+                                                <li><a href="#">联系</a></li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Mobile Menu -->
+                            <div class="col-12">
+                                <div class="mobile_menu d-block d-lg-none"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Header End -->
+    </header>
+    <main>
+        <!--? slider Area Start-->
+        <section class="slider-area slider-area2">
+            <div class="slider-active">
+                <!-- Single Slider -->
+                <div class="single-slider slider-height2">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-8 col-lg-11 col-md-12">
+                                <div class="hero__caption hero__caption2">
+                                    <h1 data-animation="bounceIn" data-delay="0.2s">hibernate框架使用详解一</h1>
+                                    <!-- breadcrumb Start-->
+                                    <nav aria-label="breadcrumb">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item"><a href="/">首页</a></li>
+                                            <li class="breadcrumb-item"><a href="/news/">新闻资讯</a></li>
+                                            <li class="breadcrumb-item">正文</li>
+                                        </ol>
+                                    </nav>
+                                    <!-- breadcrumb End -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--? About Area-1 Start -->
+        <section class="about-area1 fix pt-10 py-5">
+            <div class="support-wrapper align-items-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-9">
+                                            <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-light"> <div class="toc"> <h3>hibernate框架使用详解一</h3> <ul> <li><a href="#hibernate_2" rel="nofollow">一、hibernate的介绍</a></li> <li><a href="#hibernate_5" rel="nofollow">二、hibernate的使用</a></li> <li> <ul> <li><a href="#21_hibernate_6" rel="nofollow">2.1 hibernate框架的搭建</a></li> <li> <ul> <li><a href="#211__7" rel="nofollow">2.1.1 导包</a></li> <li><a href="#212_11" rel="nofollow">2.1.2创建数据库表、实体对象</a></li> <li><a href="#213orm_13" rel="nofollow">2.1.3创建orm元数据（对象与表的映射配置文件）</a></li> <li><a href="#214__61" rel="nofollow">2.1.4 书写主配置文件</a></li> </ul> </li> <li><a href="#22_hibernate_114" rel="nofollow">2.2 hibernate框架的使用</a></li> <li> <ul> <li><a href="#221Configuration_115" rel="nofollow">2.2.1创建Configuration对象</a></li> <li><a href="#222SessionFactory_124" rel="nofollow">2.2.2创建SessionFactory对象</a></li> <li><a href="#223Session_134" rel="nofollow">2.2.3创建Session对象</a></li> <li><a href="#224Transaction_145" rel="nofollow">2.2.4创建事务Transaction</a></li> <li><a href="#225_154" rel="nofollow">2.2.5增删改查操作</a></li> <li><a href="#226_160" rel="nofollow">2.2.6提交事务和关闭资源</a></li> </ul> </li> <li><a href="#23hibernate_166" rel="nofollow">2.3hibernate框架通用代码的封装</a></li> </ul> </li> </ul> </div> </h1> <p>hibernate是完全面向对象操作数据库的框架，在操作数据库的时候，可以以面向对象的方式来完成，不需要书写SQL语句。</p> </h1> <h2> <a id="21_hibernate_6" rel="nofollow"></a>2.1 hibernate框架的搭建</h2> <h3> <a id="211__7" rel="nofollow"></a>2.1.1 导包</h3> <p>使用hibernate框架，首先需要导入hibernate框架使用的依赖包，导包过程主要包括hibernate包和操作数据库的驱动包<br /> hibernate包有：<img decoding="async" src="http://img.555519.xyz/uploads/20230108/691cd1c0092558a94366998b699be861.jpg" alt="hibernate框架使用详解一">数据库驱动包有：<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230108/3df1a491d42a0892aab635d8f20909ae.jpg" alt="hibernate框架使用详解一"></p> <h3> <a id="212_11" rel="nofollow"></a>2.1.2创建数据库表、实体对象</h3> <p>hibernate是用来读写数据库的框架，因此需要搭建对应的数据库，创建相应的数据库表。<mark>hibernate提供创建数据库表的功能，因此创建表的步骤可以省略</mark></p> <h3> <a id="213orm_13" rel="nofollow"></a>2.1.3创建orm元数据（对象与表的映射配置文件）</h3> <p>hibernate是面向对象的框架，能够做到数据库无关性。因此需要建立对象与数据库表的映射配置文件。<br /> 映射配置文件的使用说明如下：</p> <pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt; &lt;!DOCTYPE hibernate-mapping PUBLIC      "-//Hibernate/Hibernate Mapping DTD 3.0//EN"     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"&gt; &lt;!-- 配置表与实体对象的关系 --&gt; &lt;!-- package属性:填写一个包名.在元素内部凡是需要书写完整类名的属性,可以直接写简答类名了. --&gt; &lt;hibernate-mapping package="cn.hibernate.domain"&gt; 	&lt;!--  		class元素: 配置实体与表的对应关系的 			name: 完整类名 			table:数据库表名 	 --&gt; 	&lt;class name="Customer" table="customer"&gt; 		&lt;!-- id元素:配置主键映射的属性 				name: 填写主键对应属性名 				column(可选): 填写表中的主键列名.默认值:列名会默认使用属性名 				type(可选):填写列(属性)的类型.hibernate会自动检测实体的属性类型. 						每个类型有三种填法: java类型|hibernate类型|数据库类型 				not-null(可选):配置该属性(列)是否不能为空. 默认值:false 				length(可选):配置数据库中列的长度. 默认值:使用数据库类型的最大长度 		 --&gt; 		&lt;id name="cust_id" column="cust_id"&gt; 			&lt;!-- generator:主键生成策略(详细见hibernate框架使用详解二) --&gt; 			&lt;generator class="native"&gt;&lt;/generator&gt; 		&lt;/id&gt; 		&lt;!-- property元素:除id之外的普通属性映射 				name: 填写属性名 				column(可选): 填写列名 				type(可选):填写列(属性)的类型.hibernate会自动检测实体的属性类型. 						每个类型有三种填法: java类型|hibernate类型|数据库类型 				not-null(可选):配置该属性(列)是否不能为空. 默认值:false 				length(可选):配置数据库中列的长度. 默认值:使用数据库类型的最大长度 		 --&gt; 		&lt;property name="cust_name" column="cust_name"&gt;&lt;/property&gt; 		&lt;property name="cust_source" column="cust_source"&gt;&lt;/property&gt; 		&lt;property name="cust_industry" column="cust_industry"&gt;&lt;/property&gt; 		&lt;property name="cust_level" column="cust_level"&gt;&lt;/property&gt; 		&lt;property name="cust_linkman" column="cust_linkman"&gt;&lt;/property&gt; 		&lt;property name="cust_phone" column="cust_phone"&gt;&lt;/property&gt; 		&lt;property name="cust_mobile" column="cust_mobile"&gt;&lt;/property&gt; 	&lt;/class&gt; &lt;/hibernate-mapping&gt; </code></pre> <h3> <a id="214__61" rel="nofollow"></a>2.1.4 书写主配置文件</h3> <p>主配置文件必须命名为：hibernate.cfg.xml，<mark>注意大小写</mark>，主配置文件放在src目录下。<br /> 主配置文件的内容与解释如下：</p> <pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt; &lt;!DOCTYPE hibernate-configuration PUBLIC 	"-//Hibernate/Hibernate Configuration DTD 3.0//EN" 	"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd"&gt;  &lt;hibernate-configuration&gt; 	&lt;session-factory&gt; 		&lt;!-- 数据库驱动 --&gt; 		&lt;property name="hibernate.connection.driver_class"&gt;com.mysql.jdbc.Driver&lt;/property&gt; 		 &lt;!-- 数据库url --&gt; 		&lt;property name="hibernate.connection.url"&gt;jdbc:mysql:///hibernate&lt;/property&gt; 		 &lt;!-- 数据库连接用户名 --&gt; 		&lt;property name="hibernate.connection.username"&gt;root&lt;/property&gt; 		 &lt;!-- 数据库连接密码 --&gt; 		&lt;property name="hibernate.connection.password"&gt;123&lt;/property&gt; 		&lt;!-- 数据库方言 			不同的数据库中,sql语法略有区别. 指定方言可以让hibernate框架在生成sql语句时.针对数据库的方言生成. 			sql99标准: DDL 定义语言  库表的增删改查 					  DCL 控制语言  事务 权限 					  DML 操纵语言  增删改查 			注意: MYSQL在选择方言时,请选择最短的方言. 		 --&gt; 		&lt;property name="hibernate.dialect"&gt;org.hibernate.dialect.MySQLDialect&lt;/property&gt; 		 		 		&lt;!-- #hibernate.show_sql true  			 #hibernate.format_sql true 		--&gt; 		&lt;!-- 将hibernate生成的sql语句打印到控制台 --&gt; 		&lt;property name="hibernate.show_sql"&gt;true&lt;/property&gt; 		&lt;!-- 将hibernate生成的sql语句格式化(语法缩进) --&gt; 		&lt;property name="hibernate.format_sql"&gt;true&lt;/property&gt; 		&lt;!--  		## auto schema export  自动导出表结构. 自动建表 		#hibernate.hbm2ddl.auto create		自动建表.每次框架运行都会创建新的表.以前表将会被覆盖,表数据会丢失.(开发环境中测试使用) 		#hibernate.hbm2ddl.auto create-drop 自动建表.每次框架运行结束都会将所有表删除.(开发环境中测试使用) 		#hibernate.hbm2ddl.auto update(推荐使用) 自动生成表.如果已经存在不会再生成.如果表有变动.自动更新表(不会删除任何数据). 		#hibernate.hbm2ddl.auto validate	校验.不自动生成表.每次启动会校验数据库中表是否正确.校验失败. 		 --&gt; 		&lt;property name="hibernate.hbm2ddl.auto"&gt;update&lt;/property&gt; 		&lt;!-- 引入orm元数据 			路径书写: 填写src下的路径 		 --&gt; 		&lt;mapping resource="cn/hibernate/domain/Customer.hbm.xml" /&gt; 	&lt;/session-factory&gt; &lt;/hibernate-configuration&gt; </code></pre> <p>至此hibernate框架搭建完毕。</p> <h2> <a id="22_hibernate_114" rel="nofollow"></a>2.2 hibernate框架的使用</h2> <h3> <a id="221Configuration_115" rel="nofollow"></a>2.2.1创建Configuration对象</h3> <p>创建Configuration对象，读取配置的hibernate框架的配置文件。<br /> configuration功能：配置加载类，用于加载主配置，orm元数据加载</p> <pre><code>//1、创建，调用空参构造 Configuration configuration = new Configuration(); //2、读取指定配置文件  =&gt;  空参加载方法，默认加载src下的hibernate.cfg.xml文件 configuration.configure(); </code></pre> <h3> <a id="222SessionFactory_124" rel="nofollow"></a>2.2.2创建SessionFactory对象</h3> <p>SessionFactory功能：用于创建操作数据库核心对象session对象的工厂<br /><mark>简单说就是创建一个session对象</mark><br /> 注意：1、sessionFactory负责保存和使用所有配置信息，消耗内存资源非常大<br /> 2、sessionFactory属于线程安全的对象设计<br /> 结论：保证在web项目中，只创建一个sessionFactory.</p> <pre><code>//4、根据配置信息，创建sessionfactory SessionFactory sessionFactory = configuration.buildSessionFactory(); </code></pre> <h3> <a id="223Session_134" rel="nofollow"></a>2.2.3创建Session对象</h3> <p>Session功能：表达hibernate框架与数据库之间的连接（会话） session类似JDBC年代的connection对象<br /> 还可以完成对数据库中数据的增删改查 session是hibernate操作数据库的核心对象</p> <pre><code>// 5、获得session // 打开一个新的session对象 Session session = sessionFactory.openSession();  // 获得一个与线程绑定的session对象 // sessionFactory.getCurrentSession(); </code></pre> <h3> <a id="224Transaction_145" rel="nofollow"></a>2.2.4创建事务Transaction</h3> <p>开启事务对象有两种方式，用功能范围大的一种</p> <pre><code>// 6、session获得操作事务的transaction对象 // 获得操作事务的transaction对象 // Transaction transaction = session.getTransaction(); // 开启事务并获得操作事务的transaction对象（建议使用） Transaction transaction = session.beginTransaction(); </code></pre> <h3> <a id="225_154" rel="nofollow"></a>2.2.5增删改查操作</h3> <p>事务开启以后，便可以进行增删改查操作，调用的是hibernate框架提供的方法。<br /><mark>增加</mark>：<mark>session.save()</mark><br /><mark>删除</mark>：<mark>session.delete()</mark><br /><mark>修改</mark>：<mark>session.update()</mark><br /><mark>查询</mark>：<mark>session.get()</mark></p> <h3> <a id="226_160" rel="nofollow"></a>2.2.6提交事务和关闭资源</h3> <pre><code>transaction2.commit();// 提交事务 session.close();// 释放资源 sessionFactory.close();// 释放资源 </code></pre> <h2> <a id="23hibernate_166" rel="nofollow"></a>2.3hibernate框架通用代码的封装</h2> <p>对于获取Configuration对象，SessionFactory对象和Session对象的代码都是一样的，因此可以将其抽离出来。</p> <pre><code>import org.hibernate.Session; import org.hibernate.SessionFactory; import org.hibernate.cfg.Configuration; public class HibernateUtils { 	private static SessionFactory sf; 	static { 		// 1 创建,调用空参构造 		Configuration conf = new Configuration().configure(); 		// 2 根据配置信息,创建 SessionFactory对象 		sf = conf.buildSessionFactory(); 	} 	// 获得session =&gt; 获得全新session 	public static Session openSession() { 		// 3 获得session 		Session session = sf.openSession(); 		return session; 	} 	// 获得session =&gt; 获得与线程绑定的session 	public static Session getCurrentSession() { 		// 3 获得session 		Session session = sf.getCurrentSession(); 		return session; 	} } </code></pre> <p>使用时直接调用获取相应的session对象即可，使用完毕关闭对象，释放资源。</p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-46196.htm">PyQt5 按钮Button 添加事件(信号/槽)</a></p>
+                                        <p>下一个：<a href="/news/article-46669.htm">中国动物疫苗市场分析图（中国动物疫苗公司排名）</a></p>
+                                    </div>
+                                        </div>
+                        <div class="col-md-3">
+                            <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-31429.htm" title="深圳宠物领养机构电话（深圳宠物领养中心）">深圳宠物领养机构电话（深圳宠物领养中心）</a></li>
+                        <li class="py-2"><a href="/news/article-41720.htm" title="中国农大动物医院招聘公告（中国农业大学动物医院招聘信息）">中国农大动物医院招聘公告（中国农业大学动物医院招聘信息）</a></li>
+                        <li class="py-2"><a href="/news/article-46671.htm" title="宠物领养协议书模板电子版无水印 宠物领养协议书模板电子版无水印图片">宠物领养协议书模板电子版无水印 宠物领养协议书模板电子版无水印图片</a></li>
+                        <li class="py-2"><a href="/news/article-43209.htm" title="宠物医院心得体会（宠物医院心得体会怎么写）">宠物医院心得体会（宠物医院心得体会怎么写）</a></li>
+                        <li class="py-2"><a href="/news/article-42709.htm" title="省内寄猫咪一般多少钱（省内邮寄猫咪多少钱）">省内寄猫咪一般多少钱（省内邮寄猫咪多少钱）</a></li>
+                        <li class="py-2"><a href="/news/article-39253.htm" title="URL编码及解码原理">URL编码及解码原理</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-22-free-node-subscribe.htm" title="「11月22日」最高速度18.2M/S，2024年Potatso Lite每天更新免费机场订阅节点链接">「11月22日」最高速度18.2M/S，2024年Potatso Lite每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-16-node-share-links.htm" title="「11月16日」最高速度19.3M/S，2024年Potatso Lite每天更新免费机场订阅节点链接">「11月16日」最高速度19.3M/S，2024年Potatso Lite每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-23601.htm" title="宠物用品进货渠道网店怎么开（宠物用品批发进货渠道app）">宠物用品进货渠道网店怎么开（宠物用品批发进货渠道app）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-4-free-subscribe-node.htm" title="「1月4日」最高速度18.1M/S，2025年Potatso Lite每天更新免费机场订阅分享">「1月4日」最高速度18.1M/S，2025年Potatso Lite每天更新免费机场订阅分享</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">81</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- About Area End -->
+    </main>
+        <footer>
+        <div class="footer-wrappper footer-bg">
+            <!-- footer-bottom area -->
+            <div class="footer-bottom-area">
+                <div class="container">
+                    <div class="footer-border">
+                        <div class="row d-flex align-items-center">
+                            <div class="col-xl-12 ">
+                                <div class="footer-copy-right text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                                    <p>
+                                        Potatso Lite机场订阅官网 版权所有
+                                        <br />
+                                        Powered by WordPress
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer End-->
+        </div>
+    </footer>
+    <!-- Scroll Up -->
+    <div id="back-top">
+        <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
+    </div>
+    <!-- JS here -->
+    <script src="/assets/website/js/frontend/potatsolite/vendor/modernizr-3.5.0.min.js"></script>
+    <!-- Jquery, Popper, Bootstrap -->
+    <script src="/assets/website/js/frontend/potatsolite/vendor/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/popper.min.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/bootstrap.min.js"></script>
+    <!-- Jquery Mobile Menu -->
+    <script src="/assets/website/js/frontend/potatsolite/jquery.slicknav.min.js"></script>
+    <!-- Jquery Slick , Owl-Carousel Plugins -->
+    <script src="/assets/website/js/frontend/potatsolite/owl.carousel.min.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/slick.min.js"></script>
+    <!-- One Page, Animated-HeadLin -->
+    <script src="/assets/website/js/frontend/potatsolite/wow.min.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/animated.headline.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/jquery.magnific-popup.js"></script>
+    <!-- Date Picker -->
+    <script src="/assets/website/js/frontend/potatsolite/gijgo.min.js"></script>
+    <!-- Nice-select, sticky -->
+    <script src="/assets/website/js/frontend/potatsolite/jquery.nice-select.min.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/jquery.sticky.js"></script>
+    <!-- Progress -->
+    <script src="/assets/website/js/frontend/potatsolite/jquery.barfiller.js"></script>
+    <!-- counter , waypoint,Hover Direction -->
+    <script src="/assets/website/js/frontend/potatsolite/jquery.counterup.min.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/jquery.countdown.min.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/hover-direction-snake.min.js"></script>
+    <!-- contact js -->
+    <script src="/assets/website/js/frontend/potatsolite/contact.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/jquery.form.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/jquery.validate.min.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/mail-script.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/jquery.ajaxchimp.min.js"></script>
+    <!-- Jquery Plugins, main Jquery -->
+    <script src="/assets/website/js/frontend/potatsolite/plugins.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
