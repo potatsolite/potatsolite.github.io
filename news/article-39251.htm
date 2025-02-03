@@ -8,8 +8,36 @@
     <title>Java 中单例模式的正确用法？</title>
         <meta name="description" content="单例模式指的是，保证一个类只有一个实例，并且提供一个全局可以访问的入口。 那么我们为什么需要单例呢，其中一个理由，那就是为了节省内存、节省计算。很多情况下，我们只需要一个实例就够了，如果出现了更多的实" />
         <link rel="icon" href="/assets/website/img/potatsolite/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Potatso Lite机场订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://potatsolite.github.io/news/article-39251.htm" />
+    <meta property="og:site_name" content="Potatso Lite机场订阅官网" />
+    <meta property="og:title" content="Java 中单例模式的正确用法？" />
+    <meta property="og:image" content="https://potatsolite.github.io/uploads/20240823-1/5d4f126c1e76a423b3c1c35a32676d41.webp" />
+        <meta property="og:release_date" content="2025-01-11T10:04:50" />
+    <meta property="og:updated_time" content="2025-01-11T10:04:50" />
+        <meta property="og:description" content="单例模式指的是，保证一个类只有一个实例，并且提供一个全局可以访问的入口。 那么我们为什么需要单例呢，其中一个理由，那就是为了节省内存、节省计算。很多情况下，我们只需要一个实例就够了，如果出现了更多的实" />
+        
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="site.webmanifest">
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Java 中单例模式的正确用法？">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
     <!-- CSS here -->
     <link rel="stylesheet" href="/assets/website/css/potatsolite/bootstrap.min.css">
     <link rel="stylesheet" href="/assets/website/css/potatsolite/owl.carousel.min.css">
@@ -141,16 +169,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/news/article-25908.htm" title="初中毕业可以考什么证书（初中毕业考什么证书比较实用）">初中毕业可以考什么证书（初中毕业考什么证书比较实用）</a></li>
-                        <li class="py-2"><a href="/news/article-40242.htm" title="广州领养猫咪正规机构（广州领养猫咪中心）">广州领养猫咪正规机构（广州领养猫咪中心）</a></li>
-                        <li class="py-2"><a href="/news/article-28230.htm" title="基于vue-seamless-scroll实现无缝滚动效果_vue.js">基于vue-seamless-scroll实现无缝滚动效果_vue.js</a></li>
-                        <li class="py-2"><a href="/news/article-24052.htm" title="中国前十宠物粮公司排名第一名（中国宠物粮食公司）">中国前十宠物粮公司排名第一名（中国宠物粮食公司）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-17-free-subscribe-node.htm" title="「10月17日」最高速度19.7M/S，2024年Potatso Lite每天更新免费机场订阅节点链接">「10月17日」最高速度19.7M/S，2024年Potatso Lite每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/news/article-22213.htm" title="狗粮猫粮加工设备厂家有哪些（猫狗粮加工的原料是什么）">狗粮猫粮加工设备厂家有哪些（猫狗粮加工的原料是什么）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-31-node-share.htm" title="「10月31日」最高速度19.9M/S，2024年Potatso Lite每天更新免费机场订阅节点链接">「10月31日」最高速度19.9M/S，2024年Potatso Lite每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-11-node-share.htm" title="「10月11日」最高速度20M/S，2024年Potatso Lite每天更新免费机场订阅节点链接">「10月11日」最高速度20M/S，2024年Potatso Lite每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/news/article-27296.htm" title="领养宠物签的合同到底有用吗安全吗知乎（领养宠物合同怎么写）">领养宠物签的合同到底有用吗安全吗知乎（领养宠物合同怎么写）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-4-free-node-subscribe-links.htm" title="「12月4日」最高速度19.9M/S，2024年Potatso Lite每天更新免费机场订阅节点链接">「12月4日」最高速度19.9M/S，2024年Potatso Lite每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-26-node-share-links.htm" title="「12月26日」最高速度18.1M/S，2024年Potatso Lite每天更新免费机场订阅分享">「12月26日」最高速度18.1M/S，2024年Potatso Lite每天更新免费机场订阅分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-12-free-subscribe-node.htm" title="「11月12日」最高速度19.5M/S，2024年Potatso Lite每天更新免费机场订阅节点链接">「11月12日」最高速度19.5M/S，2024年Potatso Lite每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-34875.htm" title="动物疫苗的种类有哪些图片及名称及价格 动物疫苗的种类有哪些图片及名称及价格表">动物疫苗的种类有哪些图片及名称及价格 动物疫苗的种类有哪些图片及名称及价格表</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-21-node-share.htm" title="「12月21日」最高速度20.7M/S，2024年Potatso Lite每天更新免费机场订阅分享">「12月21日」最高速度20.7M/S，2024年Potatso Lite每天更新免费机场订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-36132.htm" title="免费宠物领养平台有哪些软件可以用（免费领养宠物的软件下载）">免费宠物领养平台有哪些软件可以用（免费领养宠物的软件下载）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-20-free-subscribe-node.htm" title="「12月20日」最高速度21.8M/S，2024年Potatso Lite每天更新免费机场订阅节点链接">「12月20日」最高速度21.8M/S，2024年Potatso Lite每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-12-node-share-links.htm" title="「12月12日」最高速度21.8M/S，2024年Potatso Lite每天更新免费机场订阅节点链接">「12月12日」最高速度21.8M/S，2024年Potatso Lite每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-29-free-subscribe-node.htm" title="「1月29日」最高速度18.3M/S，2025年Potatso Lite每天更新免费机场订阅分享">「1月29日」最高速度18.3M/S，2025年Potatso Lite每天更新免费机场订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-20379.htm" title="南通宠物批发地点（南通宠物狗基地）">南通宠物批发地点（南通宠物狗基地）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-22-free-node-subscribe.htm" title="「11月22日」最高速度18.2M/S，2024年Potatso Lite每天更新免费机场订阅节点链接">「11月22日」最高速度18.2M/S，2024年Potatso Lite每天更新免费机场订阅节点链接</a></li>
                     </ul>
     </div>
 </div>
@@ -162,16 +190,16 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">39</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
             </li>
                     </ul>
     </div>
