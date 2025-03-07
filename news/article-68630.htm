@@ -1,0 +1,286 @@
+<!doctype html>
+<html class="no-js" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://potatsolite.github.io/news/article-68630.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>引入『客户端缓存』，Redis6算是把缓存玩明白了…_在线工具</title>
+        <meta name="description" content="原创：微信公众号 码农参上，欢迎分享，转载请保留出处。  哈喽大家好啊，我是没更新就是在家忙着带娃的Hydra。 在前面介绍两级缓存的文章中，我们总共给出了4种实现方案，在项目中整合了本地缓存Caff" />
+        <link rel="icon" href="/assets/website/img/potatsolite/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Potatso Lite机场订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://potatsolite.github.io/news/article-68630.htm" />
+    <meta property="og:site_name" content="Potatso Lite机场订阅官网" />
+    <meta property="og:title" content="引入『客户端缓存』，Redis6算是把缓存玩明白了…_在线工具" />
+    <meta property="og:image" content="https://potatsolite.github.io/uploads/20240823-1/7649c4700010e2a59f11c7afdf62e6e7.webp" />
+        <meta property="og:release_date" content="2025-03-06T11:04:07" />
+    <meta property="og:updated_time" content="2025-03-06T11:04:07" />
+        <meta property="og:description" content="原创：微信公众号 码农参上，欢迎分享，转载请保留出处。  哈喽大家好啊，我是没更新就是在家忙着带娃的Hydra。 在前面介绍两级缓存的文章中，我们总共给出了4种实现方案，在项目中整合了本地缓存Caff" />
+        
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="site.webmanifest">
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="引入『客户端缓存』，Redis6算是把缓存玩明白了…_在线工具">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <!-- CSS here -->
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/slicknav.css">
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/flaticon.css">
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/progressbar_barfiller.css">
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/gijgo.css">
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/animate.min.css">
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/animated-headline.css">
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/magnific-popup.css">
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/fontawesome-all.min.css">
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/themify-icons.css">
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/slick.css">
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/nice-select.css">
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D5F3LS5DN7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-D5F3LS5DN7');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- ? Preloader Start -->
+    <div id="preloader-active">
+        <div class="preloader d-flex align-items-center justify-content-center">
+            <div class="preloader-inner position-relative">
+                <div class="preloader-circle"></div>
+                <div class="preloader-img pere-text">
+                    <img src="/assets/website/img/potatsolite/logo/loder.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Preloader Start -->
+    <header>
+        <!-- Header Start -->
+        <div class="header-area header-transparent">
+            <div class="main-header ">
+                <div class="header-bottom  header-sticky">
+                    <div class="container-fluid">
+                        <div class="row align-items-center">
+                            <!-- Logo -->
+                            <div class="col-xl-2 col-lg-2">
+                                <div class="logo">
+                                    <a href="/">
+                                                                        <span>Potatso Lite</span>
+                                                                        </a>
+                                </div>
+                            </div>
+                            <div class="col-xl-10 col-lg-10">
+                                <div class="menu-wrapper d-flex align-items-center justify-content-end">
+                                    <!-- Main-menu -->
+                                    <div class="main-menu d-none d-lg-block">
+                                        <nav>
+                                            <ul id="navigation">
+                                                                                                <li><a href="/">首页</a></li>
+                                                                                                <li><a href="/free-nodes/">免费节点</a></li>
+                                                                                                <li><a href="/paid-subscribe/">推荐机场</a></li>
+                                                                                                <li><a href="/client.htm">客户端</a></li>
+                                                                                                <li><a href="/news/">新闻资讯</a></li>
+                                                                                            </ul>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Mobile Menu -->
+                            <div class="col-12">
+                                <div class="mobile_menu d-block d-lg-none"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Header End -->
+    </header>
+    <main>
+        <!--? slider Area Start-->
+        <section class="slider-area slider-area2">
+            <div class="slider-active">
+                <!-- Single Slider -->
+                <div class="single-slider slider-height2">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-8 col-lg-11 col-md-12">
+                                <div class="hero__caption hero__caption2">
+                                    <h1 data-animation="bounceIn" data-delay="0.2s">引入『客户端缓存』，Redis6算是把缓存玩明白了…_在线工具</h1>
+                                    <!-- breadcrumb Start-->
+                                    <nav aria-label="breadcrumb">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item"><a href="/">首页</a></li>
+                                            <li class="breadcrumb-item"><a href="/news/">新闻资讯</a></li>
+                                            <li class="breadcrumb-item">正文</li>
+                                        </ol>
+                                    </nav>
+                                    <!-- breadcrumb End -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--? About Area-1 Start -->
+        <section class="about-area1 fix pt-10 py-5">
+            <div class="support-wrapper align-items-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-9">
+                                            <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<blockquote> <p>原创：微信公众号 <code>码农参上</code>，欢迎分享，转载请保留出处。</p> </blockquote> <p>哈喽大家好啊，我是没更新就是在家忙着带娃的Hydra。</p> <p>在前面介绍两级缓存的文章中，我们总共给出了4种实现方案，在项目中整合了本地缓存<code>Caffeine</code>和远程缓存<code>Redis</code>，将应用的性能从仅适用单独远程缓存的基础上，再次提高了一个层次。</p> <p>而今天Hydra要和大家分享的技术，在思想上和上面两级缓存有些类似，不过不需要借助其他本地缓存中间件，只使用<code>Redis</code>自身服务端和客户端就可以实现。这就是<code>Redis6</code>中的客户端缓存<code>Client-side caching</code>这一项新特性，它允许将数据缓存在<strong>应用服务端</strong>以及<strong>远程缓存</strong>两个位置。</p> <h2 id="简介">简介</h2> <p>客户端缓存是Redis6众多新特性中比较实用的一项新功能，我们看看官方文档，了解一下它的作用：</p> <blockquote> <p>客户端缓存是一种用于创建高性能服务的技术，它可以利用<strong>应用服务器</strong>上的可用内存（这些服务器通常是一些不同于数据库服务器的节点），在这些应用服务端来直接存储数据库中的一些信息。</p> <p>与访问数据库等网络服务相比，访问本地内存所需要的时间消耗要少得多，因此这个模式可以大大缩短应用程序获取数据的延迟，同时也能减轻数据库的负载压力。</p> </blockquote> <p>看到这，我心想这不是和其他本地缓存Guava、Caffeine啥的一样吗，换汤不换药，都是使用的应用服务的内存罢了。要说有什么好处，可能就是我在项目中能少引入一个中间件了。</p> <p>不过，我这点浅薄的猜想，在看完客户端缓存的具体应用模式后，彻底被颠覆了。</p> <h3 id="两种模式">两种模式</h3> <p>在了解了客户端缓存的基本功能后，我们来看看它的两种基本应用模式。Redis的客户端缓存支持被称为<code>tracking</code>，个人感觉翻译为对key的<strong>追踪</strong>就很好理解，它具有两种模式：</p> <ul> <li>默认模式，服务端会记录某个客户端具体访问过哪一些<code>key</code>，当这些<code>key</code>对应的值发生变化时，会发送失效消息给这些客户端。这个模式会在服务端消耗一些内存，但是发送失效消息的范围，被限制在了客户端存储了的<code>key</code>的集合范围内</li> <li>广播模式，服务端不会再记录某个客户端访问了哪些<code>key</code>，因此这个模式不消耗服务端的内存。取而代之的是，客户端需要订阅<code>key</code>的特定前缀，每当符合这个前缀的<code>key</code>对应的值发生改变时，客户端都会收到通知消息</li> </ul> <p>看到这里，它和我们之前使用的两级缓存之间差异，是不是已经初露端倪了呢？如果还不熟悉两级缓存的架构，那么可以先来看看下面的这张图：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220501/20e83bb087e7916c45e8ce1eec342b34.jpg" alt="引入『客户端缓存』，Redis6算是把缓存玩明白了…_在线工具"></p> <p>这种架构在理论上看起来不错，但是实际使用起来需要注意的点不少，尤其是在分布式模式下，需要保证各个主机下的一级缓存的一致性问题，回想一下我们原先的解决方案，可以使用redis本身的<strong>发布/订阅</strong>功能来实现：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220501/c46d8b2a8372603a34d124f78d1dba83.jpg" alt="引入『客户端缓存』，Redis6算是把缓存玩明白了…_在线工具"></p> <p>而客户端缓存的出现，大大简化了这一过程。我们以<strong>默认模式</strong>为例，看一下使用了客户端缓存后的操作过程：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220501/d6f24a2f0a6b9317687d43e75ffef378.jpg" alt="引入『客户端缓存』，Redis6算是把缓存玩明白了…_在线工具"></p> <p>相比原先的发布/订阅模式，我们可以看到明显的优势，使用客户端缓存功能后，我们只需要单纯的修改redis中的数据就可以了，手动处理发布/订阅消息的这一过程可以完全被省略。</p> <h3 id="优势">优势</h3> <p>到这里，在了解了客户端缓存的基本功能与两种模式后，我们来对比一下，和传统的只使用redis做远程缓存、以及使用整合后的两级缓存相比较，客户端缓存具有什么样的优势。</p> <ul> <li>当应用的服务端存在缓存时，会直接读取本地缓存，能够减少网络访问上造成的延迟，从而加快访问速度</li> <li>同时也能减少访问redis服务端的次数，降低redis的负载压力</li> <li>在分布式环境下，不再需要通过发布订阅来通知其他主机更新本地缓存，来保证数据的一致性。使用客户端缓存后，它所具有的原生的消息通知功能，能很好地支持作废本地缓存，保证之后访问时能取到更新后的新数据</li> </ul> <h3 id="误区">误区</h3> <p>在开始演示客户端缓存的使用之前，我们先来纠正一个误区。</p> <p>虽然这个新特性被称为<strong>客户端缓存</strong>，但是redis本身不提供在应用服务端缓存数据的功能，这个功能要由<strong>访问redis的客户端</strong>自己去实现。</p> <p>说白了，也就是redis服务端只负责通知你，你缓存在应用服务本地的这个key已经作废了，至于你本地如何缓存的这些数据，redis并不关心，也不负责。</p> <h2 id="功能演示">功能演示</h2> <p>下面将通过一些实例来进行演示，本文代码的运行前提条件是你已经装好了<code>Redis6.x</code>版本，linux环境下可以直接从官网下载后编译安装，windows环境下的安装可以参考 <a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://mp.weixin.qq.com/s/-UGsYhz3hFEWeme-LlTk-g"  target="_blank"  rel="nofollow">手摸手教你在Windows环境下运行Redis6.x</a> 这篇文章。</p> <p>概念上的东西我们也大体了解了，下面我们分别来看一下客户端缓存具体实现的三种模式（至于为什么多了一种，后面再来细说）。在正式开始前，强烈建议大家先花个十几分钟了解一下 <a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://mp.weixin.qq.com/s/rLk2EW0TKAIkQvx1WefafA"  target="_blank"  rel="nofollow">Redis6底层的通信协议RESP3</a>，否则在看到具体的通信内容时可能会存在一些疑问。</p> <p>首先做一下准备工作，通过<code>telnet</code>连接redis服务，并切换到<code>resp3</code>协议模式：</p> <pre><code class="language-shell">telnet 127.0.0.1 6379 hello 3 </code></pre> <h3 id="1默认模式">1、默认模式</h3> <p>在使用客户端连接到redis服务后，需要先通过指令开启<code>tracking</code>模式的功能，因为在客户端连接后这个选项是默认关闭的，会无法收到失效类型的<code>push</code>消息：</p> <pre><code class="language-shell">#开启 client tracking on #关闭 client tracking off </code></pre> <p>当开启<code>tracking</code>后的默认模式下，redis服务端会记录每个客户端请求过的key，当key对应的值发生变化时，会发送失效信息给客户端。简单总结一下，也就是说这个模式能够生效的<strong>必要前提条件</strong>有两个：</p> <ul> <li>开启<code>tracking</code> </li> <li>客户端访问过某个key</li> </ul> <p>下面我们还是在<code>telnet</code>中来模拟一下这个过程，分别启动两个redis客户端，在client1中先执行<code>get</code>命令后，再在client2对相同的key执行<code>set</code>操作修改它的值，之后就会在client1中收到<code>push</code>类型的消息。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220501/afd0d95ad256ea7dfeb3e18245b20c71.jpg" alt="引入『客户端缓存』，Redis6算是把缓存玩明白了…_在线工具"></p> <p><code>push</code>类型的消息我们在RESP3中介绍过了，这里简单再唠叨两句：</p> <pre><code class="language-shell">&gt;2 $10 invalidate *1 $4 user </code></pre> <p>起始的第一字节<code>&gt;</code>表示该消息为<code>push</code>类型，后面消息体中包含了两部分内容，第一部分表示收到的消息类型为<code>invalidate</code>，也就是作废类型的信息，第二部分则是需要作废的key是<code>user</code>。</p> <p>除此之外，当一个缓存的key到达失效时间导致过期，或是因为到达最大内存，要使用驱逐策略进行驱逐时，也会对客户端发送<code>PUSH</code>的消息。下面以缓存的key过期为例：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220501/4c1f1dcf369b2e4c82f5ee5b10108673.jpg" alt="引入『客户端缓存』，Redis6算是把缓存玩明白了…_在线工具"></p> <p>另外，对于单个key来说，这个<code>tracking</code>消息只会对客户端发送一次，当第二次修改该key所对应的值后，客户端不会再收到<code>tracking</code>的消息。只有对这个key再执行一次<code>get</code>命令，之后才会再次收到<code>tracking</code>消息。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220501/aa2269069081c77b74af6d9fe7ac459e.jpg" alt="引入『客户端缓存』，Redis6算是把缓存玩明白了…_在线工具"></p> <p>默认模式虽然使用起来简单，但是需要在服务端存储客户端的访问数据，记录哪些key被哪些客户端访问过。如果访问的不是少量的热点数据的话，可能会占用大量redis服务端的内存空间。应对这种情况，可以试一试下面要介绍的广播模式。</p> <h3 id="2广播模式">2、广播模式</h3> <p>在广播模式<code>BCAST</code>下，redis服务端不再记录key的访问情况，而是无差别地向所有开启<code>tracking</code>广播的客户端发送消息。这样一来，好处就是不需要浪费redis服务端的内存进行记录，但是坏处就是客户端可能会收到过多的消息，其中可能还会包含自己不需要的一些key。</p> <p>在使用前，需要先通过命令开启广播模式：</p> <pre><code class="language-shell">client tracking on bcast </code></pre> <p>下面，我们通过一个例子来进行广播模式的使用演示：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220501/9e94227b5aa44c77303067799800d45c.jpg" alt="引入『客户端缓存』，Redis6算是把缓存玩明白了…_在线工具"></p> <p>可以看到在开启广播模式后，只要在client2中修改了key对应的值，在client1中都会收到作废消息，而不管client1之前在本地是否进行过缓存。</p> <p>并且，另外一点和默认模式不同的是，广播模式是能够重复多次收到一个key的失效消息的，因为服务端没有记录，所以只要有key发生了修改，客户端就会收到失效消息。</p> <p>这时候，有的小伙伴可能就要问了，如果我不想收到这么多没用的冗余消息，有没有什么办法进行一下过滤或精简呢？</p> <p>答案是可以的，在广播模式下，客户端可以只关注一些<strong>特定前缀</strong>的key，表示我只需要接收这些前缀的key，其他的就不要发给我了。命令格式如下：</p> <pre><code class="language-shell">client tracking on bcast prefix myprefix </code></pre> <p>再来看一下使用过程的示例：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220501/d5fcc84ee1c58a220e7744c800858e6a.jpg" alt="引入『客户端缓存』，Redis6算是把缓存玩明白了…_在线工具"></p> <p>可以看到，在设置了只关注以<code>order:</code>作为前缀的key后，成功过滤掉了<code>user</code>的失效消息。从这个角度来看，也要求了我们在缓存一个类型的数据时，都以相同的单词作为前缀，规范了我们在使用缓存中对key的命名规则。</p> <p>至于在业务中具体要使用哪种模式，可能更多的需要进行一下权衡。看一下你究竟是能忍受占用更多redis服务端的内存，还是能够忍受收到大量不需要的失效消息。</p> <h3 id="3转发模式">3、转发模式</h3> <p>默认模式和广播模式的生效，都要在开启<code>RESP3</code>协议的前提下，具体原因看过上面的例子大家应该也都清楚了，因为要使用<code>tracking</code>的话，就必须要借助到<code>RESP3</code>协议中的新的<code>push</code>消息类型。</p> <p>那么如果客户端还是使用的旧版本<code>RESP V2</code>的话，也想要体验这一功能，应该如何进行改造呢？</p> <p>不得不说redis6的开发者想的还是蛮全面的，为了适配<code>RESP V2</code>，专门设计了一种新的<strong>转发模式</strong>，允许使用旧版本协议的客户端通过<code>Pub/Sub</code>发布订阅功能来接收key的失效信息。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220501/5578be965d7ec58f95ca9fa55f0c4a13.jpg" alt="引入『客户端缓存』，Redis6算是把缓存玩明白了…_在线工具"></p> <p>从上面这张图可以看到，转发模式的核心就是redis服务端会将原先<code>push</code>类型的<code>tracking</code>信息，转发到订阅了<code>_redis_:invalidate</code>这一信道的被指定的客户端上。</p> <p>我们来梳理一下上面的流程，首先在client1需要使用指令开启转发模式：</p> <pre><code class="language-shell">client tracking on bcast redirect [client-id] </code></pre> <p>相对广播模式，多了两个参数，<code>redirect</code>表示为转发模式，后面的<code>client-id</code>表示消息要发送给哪一个客户端，客户端的id可以在client2上通过<code>client id</code>指令获取。</p> <p>在client2中，则需要订阅指定的信道：</p> <pre><code class="language-shell">subscribe _redis_:invalidate </code></pre> <p>其实说白了，转发模式还是使用的发布订阅功能罢了，只不过redis帮我们解放了双手，把发送消息的工作由自己完成了。整个操作的流程如下图所示：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220501/b0dbe61a2636eabd6acbc5eae9ebc882.jpg" alt="引入『客户端缓存』，Redis6算是把缓存玩明白了…_在线工具"></p> <p>可以看到，client2中收到的消息格式与之前的<code>push</code>类型消息不同，是一条RESP V2中多条批量回复格式的消息，表示的含义同样是收到的key已经作废掉了。</p> <p>需要注意的是，虽然说开启转发模式的指令中也带了一个<code>bcast</code>，但是它和广播模式有着非常大的区别。在转发模式下，<code>key</code>的作废消息只能被转发到一个客户端上，如果先后执行两条指定转发指令，那么后执行的指令会覆盖前一指令中转发的<code>client-id</code>。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220501/ebe1623e5247b889eb4d4ebb9bb9d710.jpg" alt="引入『客户端缓存』，Redis6算是把缓存玩明白了…_在线工具"></p> <p>看到这里是不是多少感觉这个转发模式有点鸡肋，毕竟实际的业务场景中很有可能会有多个客户端的存在，只能转发一个实在是有点说不过去了。不过，也有可能作者就是这么设计，留点缺陷，好让大家更快地拥抱<code>RESP3</code>……</p> <h2 id="总结">总结</h2> <p>好啦，到这里客户端缓存的基本理论和使用就介绍的差不多了，不得不说，Redis6的这个新特性确实给了我们眼前一亮的感觉。从这个新特性也可以看出，Redis大有把缓存从服务端的局限中挣脱出来，染指向客户端，一统缓存江湖的意味。</p> <p>不过这个过程应该并不简单，就像我们前面说的，毕竟只有Redis服务端还不够，还需要优秀的客户端进行支持才行。</p> <p>那么下一篇文章，我们就来从实战角度，看看如何改造客户端，让<code>client-side caching</code>能在项目中落地开花。</p> <p>这次的分享就到这里，我是Hydra，下篇文章再见。</p> <blockquote> <p>官方文档：</p> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://redis.io/docs/manual/client-side-caching/"  target="_blank"  rel="nofollow">https://redis.io/docs/manual/client-side-caching/</a></p> </blockquote> <p><strong>推荐阅读</strong></p> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://mp.weixin.qq.com/s/_ysKYrzyRGebtotGyzQUIw"  target="_blank"  rel="nofollow">Redis+Caffeine两级缓存，让访问速度纵享丝滑</a></p> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://mp.weixin.qq.com/s/-UGsYhz3hFEWeme-LlTk-g"  target="_blank"  rel="nofollow">编译实战 | 手摸手教你在Windows环境下运行Redis6.x</a></p> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://mp.weixin.qq.com/s/rLk2EW0TKAIkQvx1WefafA"  target="_blank"  rel="nofollow">Redis6通信协议升级至RESP3，一口气看完13种新数据类型</a></p> <blockquote> <p>作者简介，码农参上，一个热爱分享的公众号，有趣、深入、直接，与你聊聊技术。个人微信DrHydra9，欢迎添加好友，进一步交流。</p> </blockquote> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-67994.htm">ES 文档与索引介绍</a></p>
+                                        <p>下一个：<a href="/news/article-68631.htm">学美容美发的正规学校推荐成都（学美容美发的正规学校推荐成都）</a></p>
+                                    </div>
+                                        </div>
+                        <div class="col-md-3">
+                            <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-1-27-free-subscribe-node.htm" title="「1月27日」最高速度20.8M/S，2025年Potatso Lite每天更新免费机场订阅分享">「1月27日」最高速度20.8M/S，2025年Potatso Lite每天更新免费机场订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-54427.htm" title="vue element&#8212;&#8211;实现table前端分页">vue element&#8212;&#8211;实现table前端分页</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-30-node-share.htm" title="「1月30日」最高速度20.2M/S，2025年Potatso Lite每天更新免费机场订阅分享">「1月30日」最高速度20.2M/S，2025年Potatso Lite每天更新免费机场订阅分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-1-free-high-speed-nodes.htm" title="「2月1日」最高速度21.8M/S，2025年Potatso Lite每天更新免费机场订阅分享">「2月1日」最高速度21.8M/S，2025年Potatso Lite每天更新免费机场订阅分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-5-node-share-links.htm" title="「3月5日」最高速度20M/S，2025年Potatso Lite每天更新免费机场订阅分享">「3月5日」最高速度20M/S，2025年Potatso Lite每天更新免费机场订阅分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-4-free-node-subscribe.htm" title="「2月4日」最高速度18M/S，2025年Potatso Lite每天更新免费机场订阅分享">「2月4日」最高速度18M/S，2025年Potatso Lite每天更新免费机场订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-46669.htm" title="中国动物疫苗市场分析图（中国动物疫苗公司排名）">中国动物疫苗市场分析图（中国动物疫苗公司排名）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-28-free-node-subscribe.htm" title="「1月28日」最高速度21.5M/S，2025年Potatso Lite每天更新免费机场订阅分享">「1月28日」最高速度21.5M/S，2025年Potatso Lite每天更新免费机场订阅分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-28-free-high-speed-nodes.htm" title="「2月28日」最高速度19.5M/S，2025年Potatso Lite每天更新免费机场订阅分享">「2月28日」最高速度19.5M/S，2025年Potatso Lite每天更新免费机场订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-52808.htm" title="宠物绝育去哪（宠物绝育手术预约）">宠物绝育去哪（宠物绝育手术预约）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">21</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- About Area End -->
+    </main>
+        <footer>
+        <div class="footer-wrappper footer-bg">
+            <!-- footer-bottom area -->
+            <div class="footer-bottom-area">
+                <div class="container">
+                    <div class="footer-border">
+                        <div class="row d-flex align-items-center">
+                            <div class="col-xl-12 ">
+                                <div class="footer-copy-right text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                                    <p>
+                                        Potatso Lite机场订阅官网 版权所有
+                                        <br />
+                                        Powered by WordPress
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer End-->
+        </div>
+    </footer>
+    <!-- Scroll Up -->
+    <div id="back-top">
+        <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
+    </div>
+    <!-- JS here -->
+    <script src="/assets/website/js/frontend/potatsolite/vendor/modernizr-3.5.0.min.js"></script>
+    <!-- Jquery, Popper, Bootstrap -->
+    <script src="/assets/website/js/frontend/potatsolite/vendor/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/popper.min.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/bootstrap.min.js"></script>
+    <!-- Jquery Mobile Menu -->
+    <script src="/assets/website/js/frontend/potatsolite/jquery.slicknav.min.js"></script>
+    <!-- Jquery Slick , Owl-Carousel Plugins -->
+    <script src="/assets/website/js/frontend/potatsolite/owl.carousel.min.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/slick.min.js"></script>
+    <!-- One Page, Animated-HeadLin -->
+    <script src="/assets/website/js/frontend/potatsolite/wow.min.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/animated.headline.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/jquery.magnific-popup.js"></script>
+    <!-- Date Picker -->
+    <script src="/assets/website/js/frontend/potatsolite/gijgo.min.js"></script>
+    <!-- Nice-select, sticky -->
+    <script src="/assets/website/js/frontend/potatsolite/jquery.nice-select.min.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/jquery.sticky.js"></script>
+    <!-- Progress -->
+    <script src="/assets/website/js/frontend/potatsolite/jquery.barfiller.js"></script>
+    <!-- counter , waypoint,Hover Direction -->
+    <script src="/assets/website/js/frontend/potatsolite/jquery.counterup.min.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/jquery.countdown.min.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/hover-direction-snake.min.js"></script>
+    <!-- contact js -->
+    <script src="/assets/website/js/frontend/potatsolite/contact.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/jquery.form.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/jquery.validate.min.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/mail-script.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/jquery.ajaxchimp.min.js"></script>
+    <!-- Jquery Plugins, main Jquery -->
+    <script src="/assets/website/js/frontend/potatsolite/plugins.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
