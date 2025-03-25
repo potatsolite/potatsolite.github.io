@@ -1,0 +1,286 @@
+<!doctype html>
+<html class="no-js" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://potatsolite.github.io/news/article-80706.htm" />
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>设计模式之观察者模式(Java实现)</title>
+        <meta name="description" content="文章目录  前言 一、认识观察者模式 二、实现观察者模式   实现过程 实际应用情况描述   总结 参考资料    本篇博客是关于观察者模式的实现，若文章中出现相关问题，请指出！ 对应代码地址：Git" />
+        <link rel="icon" href="/assets/website/img/potatsolite/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Potatso Lite机场订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://potatsolite.github.io/news/article-80706.htm" />
+    <meta property="og:site_name" content="Potatso Lite机场订阅官网" />
+    <meta property="og:title" content="设计模式之观察者模式(Java实现)" />
+    <meta property="og:image" content="https://potatsolite.github.io/uploads/20240823-1/d00e5b976c95c4179ac3be6aeb6f844b.webp" />
+        <meta property="og:release_date" content="2025-03-24T08:22:50" />
+    <meta property="og:updated_time" content="2025-03-24T08:22:50" />
+        <meta property="og:description" content="文章目录  前言 一、认识观察者模式 二、实现观察者模式   实现过程 实际应用情况描述   总结 参考资料    本篇博客是关于观察者模式的实现，若文章中出现相关问题，请指出！ 对应代码地址：Git" />
+        
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="site.webmanifest">
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="设计模式之观察者模式(Java实现)">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <!-- CSS here -->
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/slicknav.css">
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/flaticon.css">
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/progressbar_barfiller.css">
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/gijgo.css">
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/animate.min.css">
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/animated-headline.css">
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/magnific-popup.css">
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/fontawesome-all.min.css">
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/themify-icons.css">
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/slick.css">
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/nice-select.css">
+    <link rel="stylesheet" href="/assets/website/css/potatsolite/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D5F3LS5DN7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-D5F3LS5DN7');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- ? Preloader Start -->
+    <div id="preloader-active">
+        <div class="preloader d-flex align-items-center justify-content-center">
+            <div class="preloader-inner position-relative">
+                <div class="preloader-circle"></div>
+                <div class="preloader-img pere-text">
+                    <img src="/assets/website/img/potatsolite/logo/loder.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Preloader Start -->
+    <header>
+        <!-- Header Start -->
+        <div class="header-area header-transparent">
+            <div class="main-header ">
+                <div class="header-bottom  header-sticky">
+                    <div class="container-fluid">
+                        <div class="row align-items-center">
+                            <!-- Logo -->
+                            <div class="col-xl-2 col-lg-2">
+                                <div class="logo">
+                                    <a href="/">
+                                                                        <span>Potatso Lite</span>
+                                                                        </a>
+                                </div>
+                            </div>
+                            <div class="col-xl-10 col-lg-10">
+                                <div class="menu-wrapper d-flex align-items-center justify-content-end">
+                                    <!-- Main-menu -->
+                                    <div class="main-menu d-none d-lg-block">
+                                        <nav>
+                                            <ul id="navigation">
+                                                                                                <li><a href="/">首页</a></li>
+                                                                                                <li><a href="/free-nodes/">免费节点</a></li>
+                                                                                                <li><a href="/paid-subscribe/">推荐机场</a></li>
+                                                                                                <li><a href="/client.htm">客户端</a></li>
+                                                                                                <li><a href="/news/">新闻资讯</a></li>
+                                                                                            </ul>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Mobile Menu -->
+                            <div class="col-12">
+                                <div class="mobile_menu d-block d-lg-none"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Header End -->
+    </header>
+    <main>
+        <!--? slider Area Start-->
+        <section class="slider-area slider-area2">
+            <div class="slider-active">
+                <!-- Single Slider -->
+                <div class="single-slider slider-height2">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-8 col-lg-11 col-md-12">
+                                <div class="hero__caption hero__caption2">
+                                    <h1 data-animation="bounceIn" data-delay="0.2s">设计模式之观察者模式(Java实现)</h1>
+                                    <!-- breadcrumb Start-->
+                                    <nav aria-label="breadcrumb">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item"><a href="/">首页</a></li>
+                                            <li class="breadcrumb-item"><a href="/news/">新闻资讯</a></li>
+                                            <li class="breadcrumb-item">正文</li>
+                                        </ol>
+                                    </nav>
+                                    <!-- breadcrumb End -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--? About Area-1 Start -->
+        <section class="about-area1 fix pt-10 py-5">
+            <div class="support-wrapper align-items-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-9">
+                                            <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-tomorrow-night"> <div class="toc"> <h3>文章目录</h3> <ul> <li><a href="#_2" rel="nofollow">前言</a></li> <li><a href="#_10" rel="nofollow">一、认识观察者模式</a></li> <li><a href="#_37" rel="nofollow">二、实现观察者模式</a></li> <li> <ul> <li><a href="#_39" rel="nofollow">实现过程</a></li> <li><a href="#_138" rel="nofollow">实际应用情况描述</a></li> </ul> </li> <li><a href="#_273" rel="nofollow">总结</a></li> <li><a href="#_283" rel="nofollow">参考资料</a></li> </ul> </div> </h1> <p>本篇博客是关于观察者模式的实现，若文章中出现相关问题，请指出！</p> <p>对应代码地址：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://gitee.com/changluJava/demo-exer/tree/master/java-Lear23designpatterns"  rel="nofollow">Gitee（demo-exer/ java-Lear23designpatterns）</a>、<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/changlua/JAVA-demos/tree/master/java-Lear23designpatterns"  rel="nofollow">Github（java-demo/ java-Lear23designpatterns）</a></p> <p>所有博客文件目录索引：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/cl939974883/article/details/113203243"  rel="nofollow">博客目录索引(持续更新)</a></p> </h1> <p><strong>观察者模式定义</strong>：属于对象行为模式，当多个对象之间存在一对多的依赖关系，即一个对象的状态发生改变时，所以依赖它的对象都会得到通知并被自动更新。这种模式有时又被称为发布-订阅模式、模型-视图模式。</p> <p><strong>结构</strong>：</p> <ol> <li>抽象主题角色(Subject)：即抽象类，提供了添加、移除观察者的方法，以及一个通知所有观察者的抽象方法。</li> <li>具体主题角色(Concrete Subject)：也称为具体目标类，实现抽象目标中的通知方法，一旦该类内部发生了什么改变时，通知所有注册过的观察者对象。</li> <li>抽象观察者(Observer)：是一个抽象类或接口，包含了一个更新自己的抽象方法，当接到具体主题的更改时被调用。</li> <li>具体观察者(Concrete Observer)：实现抽象观察者中的更新方法，一旦目标角色发出更新通知时会调用该更新方法来更新自身的状态。</li> </ol> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230112/f6be361375c065a67d042b2feb8d5abf.jpg" alt="设计模式之观察者模式(Java实现)"></p> <p><strong>优缺点</strong>：</p> <ul> <li>优点：降低了目标与观察者之间的耦合关系，符合<code>依赖倒置原则</code>，<code>开闭原则</code>。目标与观察者之间建立了一套触发机制。</li> <li>缺点：目标与观察者之间依赖关系并没有完全解除，可能出现循环引用。并且若是当在主题角色中的观察者过多时，通知发布会花费很多时间，影响程序的效率。</li> </ul> <p><strong>实际应用场景</strong>：</p> <ol> <li> <code>JDK</code>中的<code>java.util.Observable</code>。</li> <li> <code>Spring</code>中的<code>org.springframework.context.ApplicationListener</code>。</li> </ol> <p></p> <hr/> </h1> <h2> <a id="_39" rel="nofollow"></a>实现过程</h2> <p>demo见<code>xyz.changlu.observer</code>包下代码：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230112/7bb6f3470a6fc9d3772959a2c50046bc.jpg" alt="设计模式之观察者模式(Java实现)"></p> <p>抽象观察者(接口)：<code>Observer</code></p> <pre><code class="prism language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">Observer</span> <span class="token punctuation">{<!-- --></span>     <span class="token keyword">void</span> <span class="token function">response</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">}</span> </code></pre> <p>抽象主题类：<code>Subject</code></p> <pre><code class="prism language-java"><span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">Subject</span> <span class="token punctuation">{<!-- --></span>     <span class="token keyword">protected</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Observer</span><span class="token punctuation">&gt;</span></span> observers <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>      <span class="token comment">//添加观察者到集合中</span>     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">addObserver</span><span class="token punctuation">(</span><span class="token class-name">Observer</span> observer<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span>         observers<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>observer<span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token punctuation">}</span>      <span class="token comment">//移除指定观察者</span>     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">removeObserver</span><span class="token punctuation">(</span><span class="token class-name">Observer</span> observer<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span>         observers<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span>observer<span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token punctuation">}</span>      <span class="token comment">//具体通知方法让实现类去实现</span>     <span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token keyword">void</span> <span class="token function">notifyAllObserver</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">}</span> </code></pre> <p>具体观察者：<code>Task1</code>、<code>Task2</code></p> <pre><code class="prism language-java"><span class="token comment">//具体观察者1号</span> <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Task1</span> <span class="token keyword">implements</span> <span class="token class-name">Observer</span> <span class="token punctuation">{<!-- --></span>     <span class="token annotation punctuation">@Override</span>     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">response</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>         <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Task1收到通知，正在执行任务2....."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token punctuation">}</span> <span class="token punctuation">}</span>  <span class="token comment">//具体观察者2号</span> <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Task2</span> <span class="token keyword">implements</span> <span class="token class-name">Observer</span> <span class="token punctuation">{<!-- --></span>     <span class="token annotation punctuation">@Override</span>     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">response</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>         <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Task2收到通知，正在执行任务2....."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token punctuation">}</span> <span class="token punctuation">}</span> </code></pre> <p>具体主题者：<code>ConcreteSubject</code></p> <pre><code class="prism language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ConcreteSubject</span> <span class="token keyword">extends</span> <span class="token class-name">Subject</span> <span class="token punctuation">{<!-- --></span>     <span class="token annotation punctuation">@Override</span>     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">notifyAllObserver</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>         <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"收到通知"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token comment">//开始通知到所有的观察者</span>         <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">Observer</span> observer <span class="token operator">:</span> observers<span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>             observer<span class="token punctuation">.</span><span class="token function">response</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token punctuation">}</span>     <span class="token punctuation">}</span> <span class="token punctuation">}</span> </code></pre> <p>测试程序：测试类<code>Customer</code></p> <pre><code class="prism language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Customer</span> <span class="token punctuation">{<!-- --></span>     <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>         <span class="token comment">//创建两个任务</span>         <span class="token class-name">Task1</span> task1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Task1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token class-name">Task2</span> task2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Task2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token comment">//创建主题角色,并添加两个观察者(及任务)</span>         <span class="token class-name">ConcreteSubject</span> subject <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ConcreteSubject</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         subject<span class="token punctuation">.</span><span class="token function">addObserver</span><span class="token punctuation">(</span>task1<span class="token punctuation">)</span><span class="token punctuation">;</span>         subject<span class="token punctuation">.</span><span class="token function">addObserver</span><span class="token punctuation">(</span>task2<span class="token punctuation">)</span><span class="token punctuation">;</span>          <span class="token comment">//进行更新通知</span>         subject<span class="token punctuation">.</span><span class="token function">notifyAllObserver</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token punctuation">}</span> <span class="token punctuation">}</span> </code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230112/c3e5a7cd79c33ec896d326703ab1d5d2.jpg" alt="设计模式之观察者模式(Java实现)"></p> <ul> <li>首先将多个任务(即观察者)添加到主题类中(存放在一个list集合里)，一旦<code>ConcreteSubject</code>主题类进行了更新操作，即可调用其实现<code>Subject</code>抽象类的实现方法<code>notifyAllObserver()</code>来通知观察者集合中的各个观察者执行任务。</li> </ul> <p>说明：解决的是当一个对象进行更新或其他操作时对应要去更改执行或通知多个任务时，我们即可以使用观察者模式。</p> <p></p> <hr/> <h2> <a id="_138" rel="nofollow"></a>实际应用情况描述</h2> <blockquote> <p>问题描述</p> </blockquote> <p>若是主题进行了更新，并且该更新涉及到了需要个部分，此时你会怎么呢？若是没有了解过观察者模式的也许会这样：</p> <pre><code class="prism language-java"><span class="token keyword">class</span> <span class="token class-name">Weather</span><span class="token punctuation">{<!-- --></span>          <span class="token comment">//执行更新操作</span>     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">update</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span>         dao<span class="token punctuation">.</span><span class="token function">update</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//本方法核心的更新操作</span>         <span class="token comment">//通知的操作</span>         <span class="token class-name">Task</span> task <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Task</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token class-name">Task2</span> task2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Task2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         task<span class="token punctuation">.</span><span class="token function">doThing1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         task2<span class="token punctuation">.</span><span class="token function">doThing2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token punctuation">}</span> <span class="token punctuation">}</span>  <span class="token keyword">class</span> <span class="token class-name">Task</span><span class="token punctuation">{<!-- --></span>     <span class="token keyword">void</span> <span class="token function">doThing1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span>         <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     <span class="token punctuation">}</span> <span class="token punctuation">}</span>  <span class="token keyword">class</span> <span class="token class-name">Task2</span><span class="token punctuation">{<!-- --></span>     <span class="token keyword">void</span> <span class="token function">doThing2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span>         <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     <span class="token punctuation">}</span> <span class="token punctuation">}</span> </code></pre> <p>你可能会在<code>update()</code>操作中去<code>new</code>多个对象并且逐一执行，若是某一天要少通知一个单位的话还需要去手动删除…</p> <p></p> <blockquote> <p>解决对策</p> </blockquote> <p>创建一个抽象类，其包含了一个集合专门用来存放多个观察者对象，并包含添加、移除操作：</p> <pre><code class="prism language-java"><span class="token comment">//抽象主题</span> <span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">Subject</span> <span class="token punctuation">{<!-- --></span>     <span class="token keyword">protected</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Observer</span><span class="token punctuation">&gt;</span></span> observers <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>      <span class="token comment">//添加观察者到集合中</span>     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">addObserver</span><span class="token punctuation">(</span><span class="token class-name">Observer</span> observer<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span>         observers<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>observer<span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token punctuation">}</span>      <span class="token comment">//移除指定观察者</span>     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">removeObserver</span><span class="token punctuation">(</span><span class="token class-name">Observer</span> observer<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span>         observers<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span>observer<span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token punctuation">}</span>      <span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token keyword">void</span> <span class="token function">notifyAllObserver</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">}</span> </code></pre> <p>再创建一个抽象观察者接口，其带有一个通知方法：</p> <pre><code class="prism language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">Observer</span> <span class="token punctuation">{<!-- --></span>     <span class="token keyword">void</span> <span class="token function">response</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">}</span> </code></pre> <p>万事具备了，<strong>我们开始改造原来的两个类</strong>：</p> <pre><code class="prism language-java"><span class="token keyword">class</span> <span class="token class-name">Weather</span> <span class="token keyword">extends</span> <span class="token class-name">Subject</span><span class="token punctuation">{<!-- --></span>          <span class="token comment">//执行更新操作</span>     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">update</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span>         dao<span class="token punctuation">.</span><span class="token function">update</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//本方法核心的更新操作</span>         <span class="token comment">//调用通知操作即可！！！</span>         <span class="token function">notifyAllObserver</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token punctuation">}</span>          <span class="token comment">//实现一个通知方法</span>     <span class="token annotation punctuation">@Override</span>     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">notifyAllObserver</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>         <span class="token comment">//通知所有的观察者开始执行其自己的操作</span>         <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">Observer</span> observer <span class="token operator">:</span> observers<span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>             observer<span class="token punctuation">.</span><span class="token function">response</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token punctuation">}</span>     <span class="token punctuation">}</span> <span class="token punctuation">}</span>  <span class="token comment">//两个任务分别实现了观察者接口</span> <span class="token keyword">class</span> <span class="token class-name">Task</span> <span class="token keyword">implements</span> <span class="token class-name">Observer</span><span class="token punctuation">{<!-- --></span>     <span class="token keyword">void</span> <span class="token function">doThing1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span>         <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     <span class="token punctuation">}</span>          <span class="token annotation punctuation">@Override</span>     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">response</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>         <span class="token function">doThing1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//不仅仅可以添加该方法，还可以添加其他方法</span>     <span class="token punctuation">}</span> <span class="token punctuation">}</span>  <span class="token keyword">class</span> <span class="token class-name">Task2</span><span class="token punctuation">{<!-- --></span>     <span class="token keyword">void</span> <span class="token function">doThing2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span>         <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     <span class="token punctuation">}</span>          <span class="token annotation punctuation">@Override</span>     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">response</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>         <span class="token function">doThing2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//不仅仅可以添加该方法，还可以添加其他方法</span>     <span class="token punctuation">}</span> <span class="token punctuation">}</span> </code></pre> <p>测试使用时：</p> <pre><code class="prism language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Customer</span> <span class="token punctuation">{<!-- --></span>     <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>         <span class="token class-name">Weather</span> weather <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Weather</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token comment">//添加指定的任务</span>         weather<span class="token punctuation">.</span><span class="token function">addObserver</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Task</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         weather<span class="token punctuation">.</span><span class="token function">addObserver</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Task2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token comment">//执行其中的更新操作</span>         weather<span class="token punctuation">.</span><span class="token function">update</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//此时调用更新操作时，自动会执行集合中的所有观察者操作</span>     <span class="token punctuation">}</span> <span class="token punctuation">}</span> </code></pre> <p><strong>感悟</strong>：在对观察者模式进行思考时，将模式应用到实际案例中去，去通过使用设计模式来去解决整个项目的架构问题，提高方法解耦！！！</p> <p></p> <hr/> </h1> <p>1、对于观察者模式，在出现一对多的关系操作时可以进行使用来实现方法解耦，一般应当是当要执行更新或其他操作影响到很多个对象时，为了方便管理通知可以使用到该模式。</p> <p>2、优点是符合开闭原则、依赖倒置原则，对于目标与观察者之间建立了连接。缺点是依赖关系没有完全解除，若是观察者过多通知发布会耗费很多时间，影响程序的效率。</p> <p></p> <hr/> </h1> <p>视频：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.bilibili.com/video/BV157411R7Me?p=12"  rel="nofollow">2020年最详细的23种Java设计模式完整视频教程全集</a> 观察者模式</p> <p>[1]. <a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://c.biancheng.net/view/1390.html"  rel="nofollow">观察者模式（Observer模式）详解</a></p> <p>[2]. <a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.jianshu.com/p/d55ee6e83d66"  rel="nofollow">设计模式之观察者模式</a> 包含一个天气的例子</p> <blockquote> <p>我是长路，感谢你的耐心阅读。如有问题请指出，我会积极采纳！<br /> 欢迎关注我的公众号【长路Java】，分享Java学习文章及相关资料<br /> Q群：851968786 我们可以一起探讨学习<br /> 注明：转载可，需要附带上文章链接</p> </blockquote></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-80030.htm">JavaScript 对象的四种方式比较详解_javascript技巧</a></p>
+                                        <p>下一个：<a href="/news/article-80707.htm">1970年农历4月27日出生的人命好吗（1970年阴历4月17日是什么命）</a></p>
+                                    </div>
+                                        </div>
+                        <div class="col-md-3">
+                            <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-1-30-node-share.htm" title="「1月30日」最高速度20.2M/S，2025年Potatso Lite每天更新免费机场订阅分享">「1月30日」最高速度20.2M/S，2025年Potatso Lite每天更新免费机场订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-65473.htm" title="猫打完猫瘟疫苗有什么不良反应（猫咪打猫瘟疫苗后会有什么症状）">猫打完猫瘟疫苗有什么不良反应（猫咪打猫瘟疫苗后会有什么症状）</a></li>
+                        <li class="py-2"><a href="/news/article-56100.htm" title="家猫一般多久驱虫一次（家养猫咪多久驱虫一次）">家猫一般多久驱虫一次（家养猫咪多久驱虫一次）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-12-free-node-subscribe-links.htm" title="「1月12日」最高速度19.5M/S，2025年Potatso Lite每天更新免费机场订阅分享">「1月12日」最高速度19.5M/S，2025年Potatso Lite每天更新免费机场订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-38747.htm" title="拼多多58元开无货源网店是真的吗知乎（拼多多500元开店无货源）">拼多多58元开无货源网店是真的吗知乎（拼多多500元开店无货源）</a></li>
+                        <li class="py-2"><a href="/news/article-78658.htm" title="重庆宠物领养平台有哪些公司招聘（重庆宠物领养重庆宠物赠送）">重庆宠物领养平台有哪些公司招聘（重庆宠物领养重庆宠物赠送）</a></li>
+                        <li class="py-2"><a href="/news/article-69925.htm" title="ASP.NET WebAPI导出CSV_实用技巧">ASP.NET WebAPI导出CSV_实用技巧</a></li>
+                        <li class="py-2"><a href="/news/article-74555.htm" title="新手养猫适合养什么猫能养俄罗斯（养猫新手养什么猫好）">新手养猫适合养什么猫能养俄罗斯（养猫新手养什么猫好）</a></li>
+                        <li class="py-2"><a href="/news/article-44704.htm" title="canvas生成带有二维码的海报">canvas生成带有二维码的海报</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-8-free-subscribe-node.htm" title="「3月8日」最高速度20.2M/S，2025年Potatso Lite每天更新免费机场订阅分享">「3月8日」最高速度20.2M/S，2025年Potatso Lite每天更新免费机场订阅分享</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">74</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- About Area End -->
+    </main>
+        <footer>
+        <div class="footer-wrappper footer-bg">
+            <!-- footer-bottom area -->
+            <div class="footer-bottom-area">
+                <div class="container">
+                    <div class="footer-border">
+                        <div class="row d-flex align-items-center">
+                            <div class="col-xl-12 ">
+                                <div class="footer-copy-right text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                                    <p>
+                                        Potatso Lite机场订阅官网 版权所有
+                                        <br />
+                                        Powered by WordPress
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer End-->
+        </div>
+    </footer>
+    <!-- Scroll Up -->
+    <div id="back-top">
+        <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
+    </div>
+    <!-- JS here -->
+    <script src="/assets/website/js/frontend/potatsolite/vendor/modernizr-3.5.0.min.js"></script>
+    <!-- Jquery, Popper, Bootstrap -->
+    <script src="/assets/website/js/frontend/potatsolite/vendor/jquery-3.5.1.min.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/popper.min.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/bootstrap.min.js"></script>
+    <!-- Jquery Mobile Menu -->
+    <script src="/assets/website/js/frontend/potatsolite/jquery.slicknav.min.js"></script>
+    <!-- Jquery Slick , Owl-Carousel Plugins -->
+    <script src="/assets/website/js/frontend/potatsolite/owl.carousel.min.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/slick.min.js"></script>
+    <!-- One Page, Animated-HeadLin -->
+    <script src="/assets/website/js/frontend/potatsolite/wow.min.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/animated.headline.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/jquery.magnific-popup.js"></script>
+    <!-- Date Picker -->
+    <script src="/assets/website/js/frontend/potatsolite/gijgo.min.js"></script>
+    <!-- Nice-select, sticky -->
+    <script src="/assets/website/js/frontend/potatsolite/jquery.nice-select.min.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/jquery.sticky.js"></script>
+    <!-- Progress -->
+    <script src="/assets/website/js/frontend/potatsolite/jquery.barfiller.js"></script>
+    <!-- counter , waypoint,Hover Direction -->
+    <script src="/assets/website/js/frontend/potatsolite/jquery.counterup.min.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/jquery.countdown.min.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/hover-direction-snake.min.js"></script>
+    <!-- contact js -->
+    <script src="/assets/website/js/frontend/potatsolite/contact.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/jquery.form.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/jquery.validate.min.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/mail-script.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/jquery.ajaxchimp.min.js"></script>
+    <!-- Jquery Plugins, main Jquery -->
+    <script src="/assets/website/js/frontend/potatsolite/plugins.js"></script>
+    <script src="/assets/website/js/frontend/potatsolite/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
