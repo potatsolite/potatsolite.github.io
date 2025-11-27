@@ -1,4 +1,4 @@
-# 「11月18日」最高速度21.3M/S，2025年Potatso Lite每天更新免费机场订阅分享  更新时间 2025-11-18 09:02:49
+# 「11月27日」最高速度19M/S，2025年Potatso Lite每天更新免费机场订阅分享  更新时间 2025-11-27 10:18:14
 所有免费clash节点都爬取自网络，请勿用于非法用途 。节点地址：<a href="https://potatsolite.github.io" target="_blank">点击跳转</a>
 
 ## clash使用教程：
@@ -9,23 +9,23 @@
 
 ### 免费Clash节点订阅链接
 
-- https://potatsolite.github.io/uploads/2025/11/0-20251118.yaml
-- https://potatsolite.github.io/uploads/2025/11/1-20251118.yaml
-- https://potatsolite.github.io/uploads/2025/11/2-20251118.yaml
-- https://potatsolite.github.io/uploads/2025/11/3-20251118.yaml
-- https://potatsolite.github.io/uploads/2025/11/4-20251118.yaml
+- https://potatsolite.github.io/uploads/2025/11/0-20251127.yaml
+- https://potatsolite.github.io/uploads/2025/11/1-20251127.yaml
+- https://potatsolite.github.io/uploads/2025/11/2-20251127.yaml
+- https://potatsolite.github.io/uploads/2025/11/3-20251127.yaml
+- https://potatsolite.github.io/uploads/2025/11/4-20251127.yaml
 
 ### 免费V2ray节点订阅链接
 
-- https://potatsolite.github.io/uploads/2025/11/0-20251118.txt
-- https://potatsolite.github.io/uploads/2025/11/1-20251118.txt
-- https://potatsolite.github.io/uploads/2025/11/2-20251118.txt
-- https://potatsolite.github.io/uploads/2025/11/3-20251118.txt
-- https://potatsolite.github.io/uploads/2025/11/4-20251118.txt
+- https://potatsolite.github.io/uploads/2025/11/0-20251127.txt
+- https://potatsolite.github.io/uploads/2025/11/1-20251127.txt
+- https://potatsolite.github.io/uploads/2025/11/2-20251127.txt
+- https://potatsolite.github.io/uploads/2025/11/3-20251127.txt
+- https://potatsolite.github.io/uploads/2025/11/4-20251127.txt
 
 ### 免费Sing-box节点订阅链接
 
-- https://potatsolite.github.io/uploads/2025/11/20251118.json
+- https://potatsolite.github.io/uploads/2025/11/20251127.json
 
 ## 更多Clash节点订阅 ：
 
