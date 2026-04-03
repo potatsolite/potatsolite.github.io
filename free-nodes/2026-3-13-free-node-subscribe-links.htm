@@ -288,9 +288,9 @@ A: V2Ray不仅仅是VPN，更通过多协议支持和灵活路由管理，能更
     </div>
 <h4>FAQ</h4>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Sing-box 是否比 Clash 更省资源？</h5></div>
+    <div class="panel-heading"><h5>何为 fake-ip 模式，它的优缺点是什么？</h5></div>
     <div class="panel-body">
-        Sing-box 在性能优化上比 Clash 更出色。它采用 Go 语言重构核心模块，并对并发模型进行了优化，内存占用更低，启动速度更快，适合低配置设备或嵌入式环境。<hr />    </div>
+        fake-ip 是通过伪造 DNS 返回的 IP 地址让客户端透明代理流量，优点是兼容性好、无需修改应用代理设置；缺点是可能导致某些证书校验或 SNI 伪装失效，需要配合 DNS 与证书策略谨慎使用。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>如何配置 Sing-box 使用 DoH 加密 DNS？</h5></div>
@@ -298,19 +298,14 @@ A: V2Ray不仅仅是VPN，更通过多协议支持和灵活路由管理，能更
         在 dns 模块中添加类型为 doh 的上游，如 `https://1.1.1.1/dns-query`，并指定 bootstrap 地址。启用加密 DNS 可防止 DNS 泄露并加快国际解析速度，提高整体隐私保护。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>V2Ray QUIC 传输适合什么网络环境？</h5></div>
-    <div class="panel-body">
-        QUIC 基于 UDP 支持多路复用和零握手，降低延迟，提高吞吐量。适合高丢包、不稳定网络环境，可保证视频、游戏和即时通讯流量的稳定性和流畅体验。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Surfboard 可以结合规则实现广告屏蔽吗？</h5></div>
-    <div class="panel-body">
-        可以。Surfboard 支持通过规则文件匹配广告域名或 URL，将其阻断或重定向。结合策略组定期更新规则，可以实现自动广告屏蔽，提升网页浏览体验并节省带宽。<hr />    </div>
-</div>
-<div class="panel panel-default">
     <div class="panel-heading"><h5>Trojan-go 如何启用 WebSocket 支持？</h5></div>
     <div class="panel-body">
         在配置文件中将 transport 参数设置为 websocket，并指定 path 路径。客户端需同步使用相同路径及主机名。这样可将 Trojan 流量伪装为普通 WebSocket 通信以提升隐蔽性。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Sing-box 是否比 Clash 更省资源？</h5></div>
+    <div class="panel-body">
+        Sing-box 在性能优化上比 Clash 更出色。它采用 Go 语言重构核心模块，并对并发模型进行了优化，内存占用更低，启动速度更快，适合低配置设备或嵌入式环境。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>如何合理设置 Clash 的 proxy-group 实现自动切换？</h5></div>
@@ -323,9 +318,9 @@ A: V2Ray不仅仅是VPN，更通过多协议支持和灵活路由管理，能更
         VLESS 是 VMess 的轻量化替代协议，移除了内置加密逻辑，更依赖 TLS 层进行安全保护。这种设计降低了服务器压力，提升了传输效率，并增强了可扩展性。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Clash 如何实现延迟自动切换？</h5></div>
+    <div class="panel-heading"><h5>V2Ray QUIC 传输适合什么网络环境？</h5></div>
     <div class="panel-body">
-        Clash 可以结合策略组和延迟检测功能，自动选择延迟最低的节点。保证网页、视频和游戏流量通过最优节点，提高访问速度和稳定性，减少掉线和卡顿。<hr />    </div>
+        QUIC 基于 UDP 支持多路复用和零握手，降低延迟，提高吞吐量。适合高丢包、不稳定网络环境，可保证视频、游戏和即时通讯流量的稳定性和流畅体验。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>SSR 的 obfs 混淆原理是什么？</h5></div>
@@ -333,9 +328,14 @@ A: V2Ray不仅仅是VPN，更通过多协议支持和灵活路由管理，能更
         SSR 的 obfs 模块通过模拟常见流量特征（如 HTTPS 或 HTTP 请求头）来掩盖加密流量。这样可让代理流量看起来像正常的网页访问，从而有效降低被检测和封锁的风险。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>何为 fake-ip 模式，它的优缺点是什么？</h5></div>
+    <div class="panel-heading"><h5>Clash 如何实现延迟自动切换？</h5></div>
     <div class="panel-body">
-        fake-ip 是通过伪造 DNS 返回的 IP 地址让客户端透明代理流量，优点是兼容性好、无需修改应用代理设置；缺点是可能导致某些证书校验或 SNI 伪装失效，需要配合 DNS 与证书策略谨慎使用。    </div>
+        Clash 可以结合策略组和延迟检测功能，自动选择延迟最低的节点。保证网页、视频和游戏流量通过最优节点，提高访问速度和稳定性，减少掉线和卡顿。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Surfboard 可以结合规则实现广告屏蔽吗？</h5></div>
+    <div class="panel-body">
+        可以。Surfboard 支持通过规则文件匹配广告域名或 URL，将其阻断或重定向。结合策略组定期更新规则，可以实现自动广告屏蔽，提升网页浏览体验并节省带宽。    </div>
 </div>
 <div class="panel panel-default mt-5">
     <div class="panel-heading">
@@ -364,16 +364,16 @@ A: V2Ray不仅仅是VPN，更通过多协议支持和灵活路由管理，能更
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2026-2-25-node-share.htm" title="「2月25日」最高速度20.7M/S，2025年Potatso Lite每天更新免费机场订阅分享">「2月25日」最高速度20.7M/S，2025年Potatso Lite每天更新免费机场订阅分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-2-16-free-node-subscribe.htm" title="「2月16日」最高速度19.2M/S，2025年Potatso Lite每天更新免费机场订阅分享">「2月16日」最高速度19.2M/S，2025年Potatso Lite每天更新免费机场订阅分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-1-16-free-high-speed-nodes.htm" title="「1月16日」最高速度20.9M/S，2025年Potatso Lite每天更新免费机场订阅分享">「1月16日」最高速度20.9M/S，2025年Potatso Lite每天更新免费机场订阅分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-2-26-free-high-speed-nodes.htm" title="「2月26日」最高速度21.2M/S，2025年Potatso Lite每天更新免费机场订阅分享">「2月26日」最高速度21.2M/S，2025年Potatso Lite每天更新免费机场订阅分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-3-5-free-node-subscribe-links.htm" title="「3月5日」最高速度21M/S，2025年Potatso Lite每天更新免费机场订阅分享">「3月5日」最高速度21M/S，2025年Potatso Lite每天更新免费机场订阅分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-1-28-free-high-speed-nodes.htm" title="「1月28日」最高速度19M/S，2025年Potatso Lite每天更新免费机场订阅分享">「1月28日」最高速度19M/S，2025年Potatso Lite每天更新免费机场订阅分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-3-6-free-subscribe-node.htm" title="「3月6日」最高速度19M/S，2025年Potatso Lite每天更新免费机场订阅分享">「3月6日」最高速度19M/S，2025年Potatso Lite每天更新免费机场订阅分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-3-29-node-share.htm" title="「3月29日」最高速度22.1M/S，2025年Potatso Lite每天更新免费机场订阅分享">「3月29日」最高速度22.1M/S，2025年Potatso Lite每天更新免费机场订阅分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-3-25-free-node-subscribe-links.htm" title="「3月25日」最高速度23M/S，2025年Potatso Lite每天更新免费机场订阅分享">「3月25日」最高速度23M/S，2025年Potatso Lite每天更新免费机场订阅分享</a></li>
                         <li class="py-2"><a href="/free-nodes/2026-3-18-free-high-speed-nodes.htm" title="「3月18日」最高速度19M/S，2025年Potatso Lite每天更新免费机场订阅分享">「3月18日」最高速度19M/S，2025年Potatso Lite每天更新免费机场订阅分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-2-27-node-share.htm" title="「2月27日」最高速度21M/S，2025年Potatso Lite每天更新免费机场订阅分享">「2月27日」最高速度21M/S，2025年Potatso Lite每天更新免费机场订阅分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-1-25-free-subscribe-node.htm" title="「1月25日」最高速度18.3M/S，2025年Potatso Lite每天更新免费机场订阅分享">「1月25日」最高速度18.3M/S，2025年Potatso Lite每天更新免费机场订阅分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-2-10-free-high-speed-nodes.htm" title="「2月10日」最高速度22.7M/S，2025年Potatso Lite每天更新免费机场订阅分享">「2月10日」最高速度22.7M/S，2025年Potatso Lite每天更新免费机场订阅分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-3-12-node-share-links.htm" title="「3月12日」最高速度21M/S，2025年Potatso Lite每天更新免费机场订阅分享">「3月12日」最高速度21M/S，2025年Potatso Lite每天更新免费机场订阅分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-3-11-node-share.htm" title="「3月11日」最高速度21.6M/S，2025年Potatso Lite每天更新免费机场订阅分享">「3月11日」最高速度21.6M/S，2025年Potatso Lite每天更新免费机场订阅分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-3-23-node-share.htm" title="「3月23日」最高速度21.9M/S，2025年Potatso Lite每天更新免费机场订阅分享">「3月23日」最高速度21.9M/S，2025年Potatso Lite每天更新免费机场订阅分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-3-28-node-share.htm" title="「3月28日」最高速度19.4M/S，2025年Potatso Lite每天更新免费机场订阅分享">「3月28日」最高速度19.4M/S，2025年Potatso Lite每天更新免费机场订阅分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-3-5-free-node-subscribe-links.htm" title="「3月5日」最高速度21M/S，2025年Potatso Lite每天更新免费机场订阅分享">「3月5日」最高速度21M/S，2025年Potatso Lite每天更新免费机场订阅分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-3-17-node-share-links.htm" title="「3月17日」最高速度22.3M/S，2025年Potatso Lite每天更新免费机场订阅分享">「3月17日」最高速度22.3M/S，2025年Potatso Lite每天更新免费机场订阅分享</a></li>
                     </ul>
     </div>
 </div>
@@ -385,13 +385,10 @@ A: V2Ray不仅仅是VPN，更通过多协议支持和灵活路由管理，能更
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">19</span> <a href="/date/2026-03/" title="2026-03 归档">2026-03</a></h4>
+                <h4><span class="badge" style="float: right;">1</span> <a href="/date/2026-04/" title="2026-04 归档">2026-04</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">27</span> <a href="/date/2026-02/" title="2026-02 归档">2026-02</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">18</span> <a href="/date/2026-01/" title="2026-01 归档">2026-01</a></h4>
+                <h4><span class="badge" style="float: right;">26</span> <a href="/date/2026-03/" title="2026-03 归档">2026-03</a></h4>
             </li>
                     </ul>
     </div>
