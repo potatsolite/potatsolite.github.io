@@ -189,19 +189,9 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
     </div>
 <h4>FAQ</h4>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Mellow 的 TUN 模式是否支持全局游戏加速？</h5></div>
+    <div class="panel-heading"><h5>Trojan 伪装域名如何选择以提升隐蔽性？</h5></div>
     <div class="panel-body">
-        支持。TUN 模式拦截系统 IP 层流量，实现全局代理，确保游戏和其他应用的 UDP/TCP 流量都走代理节点，从而降低延迟，提高游戏体验。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>如何更新 Clash 的订阅节点？</h5></div>
-    <div class="panel-body">
-        在 Clash 中更新订阅节点，只需在配置页面中点击“Update”或“Refresh”按钮即可。系统会重新下载订阅链接中的内容，自动替换旧节点。这样能确保用户随时获取最新可用节点，避免连接失败或延迟过高。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Trojan TLS 伪装域名如何提高抗封锁能力？</h5></div>
-    <div class="panel-body">
-        通过选择真实可访问域名并使用有效证书，Trojan 流量可以完全模拟 HTTPS 请求。隐藏真实流量特征，降低被封锁和 DPI 检测风险，保证节点长期可用。<hr />    </div>
+        伪装域名应选择真实可访问网站并配备有效证书，这样 Trojan 流量可模拟正常 HTTPS 请求，降低被封锁和检测的风险，提高节点长期可用性和访问稳定性。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>V2Ray QUIC 模式适合哪些网络环境？</h5></div>
@@ -209,14 +199,14 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
         QUIC 基于 UDP 协议，支持多路复用和零握手，适合高丢包和不稳定网络环境。可提升视频、游戏和即时通讯流量的稳定性和访问速度，提高网络体验。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Shadowrocket 节点测速功能如何优化游戏体验？</h5></div>
-    <div class="panel-body">
-        Shadowrocket 会定期测速节点延迟和丢包率，并结合策略组自动切换最佳节点。保证游戏流量走低延迟节点，减少延迟和掉线，提高游戏流畅度和稳定性。<hr />    </div>
-</div>
-<div class="panel panel-default">
     <div class="panel-heading"><h5>Surfboard 如何实现按应用分流？</h5></div>
     <div class="panel-body">
         Surfboard 支持通过策略组和规则文件按应用分流，将不同应用的流量分配到不同节点。这样可保证游戏或视频走低延迟节点，提高访问速度并优化网络体验。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Shadowrocket 节点测速功能如何优化游戏体验？</h5></div>
+    <div class="panel-body">
+        Shadowrocket 会定期测速节点延迟和丢包率，并结合策略组自动切换最佳节点。保证游戏流量走低延迟节点，减少延迟和掉线，提高游戏流畅度和稳定性。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Clash 的 Rule Provider 有什么作用？</h5></div>
@@ -224,19 +214,29 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
         Rule Provider 是 Clash 的规则分发机制。用户可以订阅不同的规则集，比如广告拦截、社交媒体、流媒体等，实现按需加载。它让配置文件更加简洁、动态更新，并支持多源规则管理。<hr />    </div>
 </div>
 <div class="panel panel-default">
+    <div class="panel-heading"><h5>Trojan TLS 伪装域名如何提高抗封锁能力？</h5></div>
+    <div class="panel-body">
+        通过选择真实可访问域名并使用有效证书，Trojan 流量可以完全模拟 HTTPS 请求。隐藏真实流量特征，降低被封锁和 DPI 检测风险，保证节点长期可用。<hr />    </div>
+</div>
+<div class="panel panel-default">
     <div class="panel-heading"><h5>V2Ray 中的 alterId 是什么，现在还有必要配置吗？</h5></div>
     <div class="panel-body">
         alterId 曾用于 VMess 的用户混淆机制以防止重放攻击，但在 V2Ray 新版本与 VLess 出现后，alterId 已不再推荐使用。现代配置多使用 UUID 或直接迁移至 VLess/XTLS 以获得更好性能与安全性。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Trojan 伪装域名如何选择以提升隐蔽性？</h5></div>
+    <div class="panel-heading"><h5>如何更新 Clash 的订阅节点？</h5></div>
     <div class="panel-body">
-        伪装域名应选择真实可访问网站并配备有效证书，这样 Trojan 流量可模拟正常 HTTPS 请求，降低被封锁和检测的风险，提高节点长期可用性和访问稳定性。<hr />    </div>
+        在 Clash 中更新订阅节点，只需在配置页面中点击“Update”或“Refresh”按钮即可。系统会重新下载订阅链接中的内容，自动替换旧节点。这样能确保用户随时获取最新可用节点，避免连接失败或延迟过高。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>VLESS 的伪装流量如何提升隐蔽性？</h5></div>
     <div class="panel-body">
-        VLESS 通过 Reality 或 XTLS 模式对流量进行伪装，使其在外观上与正常 HTTPS 请求一致。这样可以绕过深度包检测和封锁，提高高封锁网络环境下的可用性。    </div>
+        VLESS 通过 Reality 或 XTLS 模式对流量进行伪装，使其在外观上与正常 HTTPS 请求一致。这样可以绕过深度包检测和封锁，提高高封锁网络环境下的可用性。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Mellow 的 TUN 模式是否支持全局游戏加速？</h5></div>
+    <div class="panel-body">
+        支持。TUN 模式拦截系统 IP 层流量，实现全局代理，确保游戏和其他应用的 UDP/TCP 流量都走代理节点，从而降低延迟，提高游戏体验。    </div>
 </div>
 <div class="panel panel-default mt-5">
     <div class="panel-heading">
@@ -284,16 +284,16 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2026-8-22-free-subscribe-node.htm" title="「8月22日」最高速度22.6M/S，2025年Potatso Lite每天更新免费机场订阅分享">「8月22日」最高速度22.6M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-8-14-node-share.htm" title="「8月14日」最高速度22.3M/S，2025年Potatso Lite每天更新免费机场订阅分享">「8月14日」最高速度22.3M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-8-20-free-node-subscribe.htm" title="「8月20日」最高速度21M/S，2025年Potatso Lite每天更新免费机场订阅分享">「8月20日」最高速度21M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-8-8-free-node-subscribe.htm" title="「8月8日」最高速度20.3M/S，2025年Potatso Lite每天更新免费机场订阅分享">「8月8日」最高速度20.3M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/node-share-links-2026-8-13.htm" title="「8月13日」最高速度22.4M/S，2025年Potatso Lite每天更新免费机场订阅分享">「8月13日」最高速度22.4M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-8-18-free-node-subscribe.htm" title="「8月18日」最高速度19.2M/S，2025年Potatso Lite每天更新免费机场订阅分享">「8月18日」最高速度19.2M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-9-6-free-node-subscribe.htm" title="「9月6日」最高速度20.8M/S，2025年Potatso Lite每天更新免费机场订阅分享">「9月6日」最高速度20.8M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-9-12-free-node-subscribe.htm" title="「9月12日」最高速度19.2M/S，2025年Potatso Lite每天更新免费机场订阅分享">「9月12日」最高速度19.2M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/node-share-links-2026-8-15.htm" title="「8月15日」最高速度18.1M/S，2025年Potatso Lite每天更新免费机场订阅分享">「8月15日」最高速度18.1M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-9-4-node-share.htm" title="「9月4日」最高速度21.5M/S，2025年Potatso Lite每天更新免费机场订阅分享">「9月4日」最高速度21.5M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/free-high-speed-nodes-2026-8-19.htm" title="「8月19日」最高速度21.2M/S，2025年Potatso Lite每天更新免费机场订阅分享">「8月19日」最高速度21.2M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-8-28-node-share.htm" title="「8月28日」最高速度18.2M/S，2025年Potatso Lite每天更新免费机场订阅分享">「8月28日」最高速度18.2M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/node-share-links-2026-9-1.htm" title="「9月1日」最高速度18.2M/S，2025年Potatso Lite每天更新免费机场订阅分享">「9月1日」最高速度18.2M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
                         <li class="py-2"><a href="/free-nodes/2026-8-16-node-share.htm" title="「8月16日」最高速度22.2M/S，2025年Potatso Lite每天更新免费机场订阅分享">「8月16日」最高速度22.2M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-8-24-node-share.htm" title="「8月24日」最高速度22.6M/S，2025年Potatso Lite每天更新免费机场订阅分享">「8月24日」最高速度22.6M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/free-node-subscribe-links-2026-8-31.htm" title="「8月31日」最高速度21M/S，2025年Potatso Lite每天更新免费机场订阅分享">「8月31日」最高速度21M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/free-high-speed-nodes-2026-8-23.htm" title="「8月23日」最高速度21.5M/S，2025年Potatso Lite每天更新免费机场订阅分享">「8月23日」最高速度21.5M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/free-node-subscribe-links-2026-8-21.htm" title="「8月21日」最高速度22.5M/S，2025年Potatso Lite每天更新免费机场订阅分享">「8月21日」最高速度22.5M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/node-share-links-2026-8-9.htm" title="「8月9日」最高速度19.8M/S，2025年Potatso Lite每天更新免费机场订阅分享">「8月9日」最高速度19.8M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
                     </ul>
     </div>
 </div>
@@ -305,7 +305,7 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">10</span> <a href="/date/2026-09/" title="2026-09 归档">2026-09</a></h4>
+                <h4><span class="badge" style="float: right;">17</span> <a href="/date/2026-09/" title="2026-09 归档">2026-09</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">26</span> <a href="/date/2026-08/" title="2026-08 归档">2026-08</a></h4>
