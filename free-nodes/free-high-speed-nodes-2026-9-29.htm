@@ -266,24 +266,24 @@ Clash能够有效管理数据缓存，提升网络访问速度。在访问频繁
     </div>
 <h4>FAQ</h4>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Nekobox 如何分流多协议流量？</h5></div>
-    <div class="panel-body">
-        Nekobox 可以同时管理 Shadowsocks、VMess、Trojan 等多协议节点，通过策略组将不同流量分配到指定节点，实现精准分流，提高网络效率和管理便利性。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Mellow TUN 模式与 SOCKS5 代理有什么区别？</h5></div>
-    <div class="panel-body">
-        TUN 模式拦截系统 IP 层流量，实现全局代理；SOCKS5 代理通常只影响指定应用。TUN 更适合全局加速，如游戏、视频和浏览器流量，提高网络稳定性和覆盖范围。<hr />    </div>
-</div>
-<div class="panel panel-default">
     <div class="panel-heading"><h5>Trojan-Go 的端口不可达怎么办？</h5></div>
     <div class="panel-body">
         检查服务器防火墙是否开放对应端口，同时确认客户端和服务器端端口一致。还可以尝试更换节点或端口，确保 TLS 证书有效以保证连接成功。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>如何备份 Clash 配置文件？</h5></div>
+    <div class="panel-heading"><h5>WinXray 延迟检测功能如何提高网络体验？</h5></div>
     <div class="panel-body">
-        Clash 的配置文件通常位于程序目录或配置文件夹中（如 Windows 下的 .config/clash）。用户可直接复制该 YAML 文件以备份，也可将订阅链接保存，便于后续恢复或在其他设备上同步使用。<hr />    </div>
+        WinXray 会定期检测节点延迟，结合策略组自动切换到低延迟节点。保证网页、视频和游戏流量通过最佳节点，提高访问速度和连接稳定性，减少掉线和卡顿。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Nekoray 与 Nekobox 有什么不同？</h5></div>
+    <div class="panel-body">
+        Nekoray 是一款基于 Qt 的跨平台代理前端，而 Nekobox 更偏向移动端简化使用。两者均支持 V2Ray/VLESS/Trojan 协议，但 Nekobox 提供了更轻量的界面和更快的连接启动速度。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Nekobox 如何分流多协议流量？</h5></div>
+    <div class="panel-body">
+        Nekobox 可以同时管理 Shadowsocks、VMess、Trojan 等多协议节点，通过策略组将不同流量分配到指定节点，实现精准分流，提高网络效率和管理便利性。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Potatso Lite 支持订阅链接导入吗？</h5></div>
@@ -291,9 +291,14 @@ Clash能够有效管理数据缓存，提升网络访问速度。在访问频繁
         Potatso Lite 不支持自动订阅功能，用户需手动添加节点。如果想批量导入订阅，可使用其他客户端生成节点二维码，再手动扫描添加。适合轻量使用者。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>WinXray 延迟检测功能如何提高网络体验？</h5></div>
+    <div class="panel-heading"><h5>如何备份 Clash 配置文件？</h5></div>
     <div class="panel-body">
-        WinXray 会定期检测节点延迟，结合策略组自动切换到低延迟节点。保证网页、视频和游戏流量通过最佳节点，提高访问速度和连接稳定性，减少掉线和卡顿。<hr />    </div>
+        Clash 的配置文件通常位于程序目录或配置文件夹中（如 Windows 下的 .config/clash）。用户可直接复制该 YAML 文件以备份，也可将订阅链接保存，便于后续恢复或在其他设备上同步使用。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>V2Ray 中的多入口（inbounds）配置有什么用？</h5></div>
+    <div class="panel-body">
+        V2Ray 支持多入口配置，可以同时开启 HTTP、Socks、TUN 等多种代理方式，方便不同程序接入。通过设置不同端口，用户可实现局域网共享或分离不同流量来源。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>VLESS 相比 VMess 的主要改进是什么？</h5></div>
@@ -306,14 +311,9 @@ Clash能够有效管理数据缓存，提升网络访问速度。在访问频繁
         检查订阅 URL 是否有效并确保网络通畅。可手动刷新或重新添加订阅链接，保证节点列表最新。结合策略组使用，确保稳定科学上网体验。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Nekoray 与 Nekobox 有什么不同？</h5></div>
+    <div class="panel-heading"><h5>Mellow TUN 模式与 SOCKS5 代理有什么区别？</h5></div>
     <div class="panel-body">
-        Nekoray 是一款基于 Qt 的跨平台代理前端，而 Nekobox 更偏向移动端简化使用。两者均支持 V2Ray/VLESS/Trojan 协议，但 Nekobox 提供了更轻量的界面和更快的连接启动速度。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>V2Ray 中的多入口（inbounds）配置有什么用？</h5></div>
-    <div class="panel-body">
-        V2Ray 支持多入口配置，可以同时开启 HTTP、Socks、TUN 等多种代理方式，方便不同程序接入。通过设置不同端口，用户可实现局域网共享或分离不同流量来源。    </div>
+        TUN 模式拦截系统 IP 层流量，实现全局代理；SOCKS5 代理通常只影响指定应用。TUN 更适合全局加速，如游戏、视频和浏览器流量，提高网络稳定性和覆盖范围。    </div>
 </div>
 <div class="panel panel-default mt-5">
     <div class="panel-heading">
@@ -361,16 +361,16 @@ Clash能够有效管理数据缓存，提升网络访问速度。在访问频繁
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/free-node-subscribe-links-2026-9-25.htm" title="「9月25日」最高速度20.7M/S，2025年Potatso Lite每天更新免费机场订阅分享">「9月25日」最高速度20.7M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/free-node-subscribe-links-2026-9-27.htm" title="「9月27日」最高速度21.9M/S，2025年Potatso Lite每天更新免费机场订阅分享">「9月27日」最高速度21.9M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-9-22-node-share.htm" title="「9月22日」最高速度20.9M/S，2025年Potatso Lite每天更新免费机场订阅分享">「9月22日」最高速度20.9M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-9-12-free-node-subscribe.htm" title="「9月12日」最高速度19.2M/S，2025年Potatso Lite每天更新免费机场订阅分享">「9月12日」最高速度19.2M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-10-2-node-share.htm" title="「10月2日」最高速度19.1M/S，2025年Potatso Lite每天更新免费机场订阅分享">「10月2日」最高速度19.1M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-9-16-free-node-subscribe.htm" title="「9月16日」最高速度19.8M/S，2025年Potatso Lite每天更新免费机场订阅分享">「9月16日」最高速度19.8M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/free-node-subscribe-links-2026-10-5.htm" title="「10月5日」最高速度21.9M/S，2025年Potatso Lite每天更新免费机场订阅分享">「10月5日」最高速度21.9M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
                         <li class="py-2"><a href="/free-nodes/node-share-links-2026-9-21.htm" title="「9月21日」最高速度19.6M/S，2025年Potatso Lite每天更新免费机场订阅分享">「9月21日」最高速度19.6M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/free-node-subscribe-links-2026-9-19.htm" title="「9月19日」最高速度22.4M/S，2025年Potatso Lite每天更新免费机场订阅分享">「9月19日」最高速度22.4M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/free-high-speed-nodes-2026-8-29.htm" title="「8月29日」最高速度19.8M/S，2025年Potatso Lite每天更新免费机场订阅分享">「8月29日」最高速度19.8M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/free-high-speed-nodes-2026-8-19.htm" title="「8月19日」最高速度21.2M/S，2025年Potatso Lite每天更新免费机场订阅分享">「8月19日」最高速度21.2M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-9-6-free-node-subscribe.htm" title="「9月6日」最高速度20.8M/S，2025年Potatso Lite每天更新免费机场订阅分享">「9月6日」最高速度20.8M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/node-share-links-2026-8-11.htm" title="「8月11日」最高速度19.9M/S，2025年Potatso Lite每天更新免费机场订阅分享">「8月11日」最高速度19.9M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/free-node-subscribe-links-2026-9-23.htm" title="「9月23日」最高速度19.9M/S，2025年Potatso Lite每天更新免费机场订阅分享">「9月23日」最高速度19.9M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/node-share-links-2026-9-1.htm" title="「9月1日」最高速度18.2M/S，2025年Potatso Lite每天更新免费机场订阅分享">「9月1日」最高速度18.2M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/node-share-links-2026-8-25.htm" title="「8月25日」最高速度22.8M/S，2025年Potatso Lite每天更新免费机场订阅分享">「8月25日」最高速度22.8M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-8-24-node-share.htm" title="「8月24日」最高速度22.6M/S，2025年Potatso Lite每天更新免费机场订阅分享">「8月24日」最高速度22.6M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/free-high-speed-nodes-2026-9-3.htm" title="「9月3日」最高速度21M/S，2025年Potatso Lite每天更新免费机场订阅分享">「9月3日」最高速度21M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-9-8-free-subscribe-node.htm" title="「9月8日」最高速度21.6M/S，2025年Potatso Lite每天更新免费机场订阅分享">「9月8日」最高速度21.6M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
                     </ul>
     </div>
 </div>
@@ -382,13 +382,10 @@ Clash能够有效管理数据缓存，提升网络访问速度。在访问频繁
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">1</span> <a href="/date/2026-10/" title="2026-10 归档">2026-10</a></h4>
+                <h4><span class="badge" style="float: right;">8</span> <a href="/date/2026-10/" title="2026-10 归档">2026-10</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2026-09/" title="2026-09 归档">2026-09</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">26</span> <a href="/date/2026-08/" title="2026-08 归档">2026-08</a></h4>
+                <h4><span class="badge" style="float: right;">29</span> <a href="/date/2026-09/" title="2026-09 归档">2026-09</a></h4>
             </li>
                     </ul>
     </div>

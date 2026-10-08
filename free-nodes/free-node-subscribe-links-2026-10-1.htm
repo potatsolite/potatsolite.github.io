@@ -311,27 +311,13 @@ A：取决于配置和使用方式。它本质上不是匿名工具，但通过�
 <div class="clearfix"></div>
 <div class="col-md-12 mt-5">
         <p>上一个：<a href="/free-nodes/2026-9-30-free-subscribe-node.htm">「9月30日」最高速度19.5M/S，2025年Potatso Lite每天更新免费机场订阅分享</a></p>
+        <p>下一个：<a href="/free-nodes/2026-10-2-node-share.htm">「10月2日」最高速度19.1M/S，2025年Potatso Lite每天更新免费机场订阅分享</a></p>
     </div>
 <h4>FAQ</h4>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Netch 的 TCP/UDP 分流适合哪些应用？</h5></div>
+    <div class="panel-heading"><h5>如何合理设置 Clash 的 proxy-group 实现自动切换？</h5></div>
     <div class="panel-body">
-        TCP 分流适合网页、下载和视频播放，UDP 分流适合游戏、语音和实时视频。Netch 可同时代理 TCP 和 UDP 流量，实现精准分流，保证不同应用的最佳性能。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>VLESS + XTLS 对高延迟网络有哪些优化？</h5></div>
-    <div class="panel-body">
-        XTLS 模式减少握手和加密开销，适合高延迟或不稳定网络环境。结合策略组和节点切换，可提高网页浏览、视频播放和游戏的稳定性和流畅度，改善用户体验。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Surfboard 可以导入哪些格式的规则文件？</h5></div>
-    <div class="panel-body">
-        Surfboard 支持 YAML 和部分 JSON 格式的规则文件，用户可以导入节点、策略组和分流规则。注意文件格式和语法必须符合 Surfboard 规范，否则可能导入失败。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>VMess 连接延迟过高该如何优化？</h5></div>
-    <div class="panel-body">
-        可尝试切换传输协议（如 WS、gRPC）、调整 MTU 或启用 MUX 多路复用功能。同时检查服务器地理位置、带宽和延迟，并选择最优节点以降低延迟。<hr />    </div>
+        创建包含多个节点的策略组（如 `url-test` 或 `fallback`），设置合适的检测 URL 与检测频率，启用延迟优先或可用性优先策略。这样客户端会自动选择延迟最低或可用节点，提升稳定性。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>VLess + Reality 的优势主要体现在哪些方面？</h5></div>
@@ -339,9 +325,9 @@ A：取决于配置和使用方式。它本质上不是匿名工具，但通过�
         Reality 采用非传统 TLS 流量伪装方式，通过模拟目标网站证书与握手特征来隐藏代理特征，相较于普通 VLess + TLS 更难被识别。它还具备更高的性能与更少的明文特征，适合高安全需求环境。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Trojan-Go 是否支持 WebSocket？</h5></div>
+    <div class="panel-heading"><h5>Netch 的 TCP/UDP 分流适合哪些应用？</h5></div>
     <div class="panel-body">
-        Trojan-Go 增强了原版 Trojan，支持 WebSocket、gRPC 等多种传输方式。通过这些传输层协议，可在伪装网站下运行代理服务，提高隐蔽性和灵活性。<hr />    </div>
+        TCP 分流适合网页、下载和视频播放，UDP 分流适合游戏、语音和实时视频。Netch 可同时代理 TCP 和 UDP 流量，实现精准分流，保证不同应用的最佳性能。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>SSR 混淆方式如何提高抗封锁能力？</h5></div>
@@ -349,19 +335,34 @@ A：取决于配置和使用方式。它本质上不是匿名工具，但通过�
         SSR 混淆可将流量伪装成正常 HTTPS 或 HTTP 数据，降低被 DPI 检测风险。合理选择协议和混淆参数组合，可以提高节点稳定性和长期可用性，保证科学上网体验顺畅。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>如何合理设置 Clash 的 proxy-group 实现自动切换？</h5></div>
+    <div class="panel-heading"><h5>VMess 连接延迟过高该如何优化？</h5></div>
     <div class="panel-body">
-        创建包含多个节点的策略组（如 `url-test` 或 `fallback`），设置合适的检测 URL 与检测频率，启用延迟优先或可用性优先策略。这样客户端会自动选择延迟最低或可用节点，提升稳定性。<hr />    </div>
+        可尝试切换传输协议（如 WS、gRPC）、调整 MTU 或启用 MUX 多路复用功能。同时检查服务器地理位置、带宽和延迟，并选择最优节点以降低延迟。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>QuantumultX 的重写规则可实现哪些功能？</h5></div>
+    <div class="panel-heading"><h5>Surfboard 可以导入哪些格式的规则文件？</h5></div>
     <div class="panel-body">
-        QuantumultX 的重写规则支持请求头修改、响应内容修改、广告屏蔽及自动跳转。结合脚本可实现自动签到、流量统计和定制化网络访问，极大增强客户端灵活性。<hr />    </div>
+        Surfboard 支持 YAML 和部分 JSON 格式的规则文件，用户可以导入节点、策略组和分流规则。注意文件格式和语法必须符合 Surfboard 规范，否则可能导入失败。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>VLESS + XTLS 对高延迟网络有哪些优化？</h5></div>
+    <div class="panel-body">
+        XTLS 模式减少握手和加密开销，适合高延迟或不稳定网络环境。结合策略组和节点切换，可提高网页浏览、视频播放和游戏的稳定性和流畅度，改善用户体验。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>V2Ray QUIC 模式在高丢包网络中的优势？</h5></div>
     <div class="panel-body">
-        QUIC 基于 UDP 协议，支持多路复用和零握手，可减少延迟和丢包。适合视频、游戏和即时通讯等高丢包环境，保证访问稳定性和速度，提高整体体验。    </div>
+        QUIC 基于 UDP 协议，支持多路复用和零握手，可减少延迟和丢包。适合视频、游戏和即时通讯等高丢包环境，保证访问稳定性和速度，提高整体体验。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Trojan-Go 是否支持 WebSocket？</h5></div>
+    <div class="panel-body">
+        Trojan-Go 增强了原版 Trojan，支持 WebSocket、gRPC 等多种传输方式。通过这些传输层协议，可在伪装网站下运行代理服务，提高隐蔽性和灵活性。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>QuantumultX 的重写规则可实现哪些功能？</h5></div>
+    <div class="panel-body">
+        QuantumultX 的重写规则支持请求头修改、响应内容修改、广告屏蔽及自动跳转。结合脚本可实现自动签到、流量统计和定制化网络访问，极大增强客户端灵活性。    </div>
 </div>
 <div class="panel panel-default mt-5">
     <div class="panel-heading">
@@ -409,16 +410,16 @@ A：取决于配置和使用方式。它本质上不是匿名工具，但通过�
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/free-node-subscribe-links-2026-8-21.htm" title="「8月21日」最高速度22.5M/S，2025年Potatso Lite每天更新免费机场订阅分享">「8月21日」最高速度22.5M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-8-24-node-share.htm" title="「8月24日」最高速度22.6M/S，2025年Potatso Lite每天更新免费机场订阅分享">「8月24日」最高速度22.6M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
                         <li class="py-2"><a href="/free-nodes/free-node-subscribe-links-2026-9-23.htm" title="「9月23日」最高速度19.9M/S，2025年Potatso Lite每天更新免费机场订阅分享">「9月23日」最高速度19.9M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/node-share-links-2026-9-7.htm" title="「9月7日」最高速度22.7M/S，2025年Potatso Lite每天更新免费机场订阅分享">「9月7日」最高速度22.7M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/free-node-subscribe-links-2026-9-25.htm" title="「9月25日」最高速度20.7M/S，2025年Potatso Lite每天更新免费机场订阅分享">「9月25日」最高速度20.7M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/free-node-subscribe-links-2026-9-19.htm" title="「9月19日」最高速度22.4M/S，2025年Potatso Lite每天更新免费机场订阅分享">「9月19日」最高速度22.4M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-8-18-free-node-subscribe.htm" title="「8月18日」最高速度19.2M/S，2025年Potatso Lite每天更新免费机场订阅分享">「8月18日」最高速度19.2M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/node-share-links-2026-8-11.htm" title="「8月11日」最高速度19.9M/S，2025年Potatso Lite每天更新免费机场订阅分享">「8月11日」最高速度19.9M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/node-share-links-2026-9-9.htm" title="「9月9日」最高速度20.3M/S，2025年Potatso Lite每天更新免费机场订阅分享">「9月9日」最高速度20.3M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-9-22-node-share.htm" title="「9月22日」最高速度20.9M/S，2025年Potatso Lite每天更新免费机场订阅分享">「9月22日」最高速度20.9M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-9-2-node-share.htm" title="「9月2日」最高速度18.5M/S，2025年Potatso Lite每天更新免费机场订阅分享">「9月2日」最高速度18.5M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
                         <li class="py-2"><a href="/free-nodes/2026-9-16-free-node-subscribe.htm" title="「9月16日」最高速度19.8M/S，2025年Potatso Lite每天更新免费机场订阅分享">「9月16日」最高速度19.8M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/free-high-speed-nodes-2026-9-13.htm" title="「9月13日」最高速度20.6M/S，2025年Potatso Lite每天更新免费机场订阅分享">「9月13日」最高速度20.6M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/free-high-speed-nodes-2026-10-3.htm" title="「10月3日」最高速度19.3M/S，2025年Potatso Lite每天更新免费机场订阅分享">「10月3日」最高速度19.3M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-9-4-node-share.htm" title="「9月4日」最高速度21.5M/S，2025年Potatso Lite每天更新免费机场订阅分享">「9月4日」最高速度21.5M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-10-2-node-share.htm" title="「10月2日」最高速度19.1M/S，2025年Potatso Lite每天更新免费机场订阅分享">「10月2日」最高速度19.1M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/free-node-subscribe-links-2026-10-7.htm" title="「10月7日」最高速度21M/S，2025年Potatso Lite每天更新免费机场订阅分享">「10月7日」最高速度21M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/free-node-subscribe-links-2026-10-1.htm" title="「10月1日」最高速度18.3M/S，2025年Potatso Lite每天更新免费机场订阅分享">「10月1日」最高速度18.3M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
                     </ul>
     </div>
 </div>
@@ -430,13 +431,10 @@ A：取决于配置和使用方式。它本质上不是匿名工具，但通过�
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">1</span> <a href="/date/2026-10/" title="2026-10 归档">2026-10</a></h4>
+                <h4><span class="badge" style="float: right;">8</span> <a href="/date/2026-10/" title="2026-10 归档">2026-10</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2026-09/" title="2026-09 归档">2026-09</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">26</span> <a href="/date/2026-08/" title="2026-08 归档">2026-08</a></h4>
+                <h4><span class="badge" style="float: right;">29</span> <a href="/date/2026-09/" title="2026-09 归档">2026-09</a></h4>
             </li>
                     </ul>
     </div>
