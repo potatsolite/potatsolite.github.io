@@ -309,6 +309,11 @@ x浏览器科学上网版宛如一把开启网络自由的利剑，轻盈而锋�
     </div>
 <h4>FAQ</h4>
 <div class="panel panel-default">
+    <div class="panel-heading"><h5>Mellow 能与 Clash 共存吗？</h5></div>
+    <div class="panel-body">
+        可以。Mellow 与 Clash 核心不同，前者采用透明代理技术，后者通过系统代理生效。两者配置端口不冲突的情况下可共存运行，用于不同的流量处理场景。<hr />    </div>
+</div>
+<div class="panel panel-default">
     <div class="panel-heading"><h5>Hysteria2 是否支持 UDP 加速？</h5></div>
     <div class="panel-body">
         支持。Hysteria2 通过 QUIC 协议原生支持 UDP 加速，对实时性要求高的应用（如游戏或语音通话）表现极佳，能显著降低延迟并提高连接稳定性。<hr />    </div>
@@ -319,29 +324,9 @@ x浏览器科学上网版宛如一把开启网络自由的利剑，轻盈而锋�
         VMess 连接不稳定可能由节点延迟过高、服务器防火墙、TLS 配置错误或 ISP 丢包引起。建议测试不同传输协议（如 WS、gRPC）或切换节点，检查日志确认具体错误信息。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>SSR 是什么？它与 Shadowsocks 有何不同？</h5></div>
-    <div class="panel-body">
-        SSR（ShadowsocksR）是 Shadowsocks 的增强版本，增加了多种混淆与加密方式，提高了抗封锁能力。与原版相比，SSR 的兼容性更强，但目前已停止维护，许多用户正逐渐迁移到更先进的 V2Ray 或 Trojan 协议上。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>VLESS 的 XTLS 模式能提升传输效率吗？</h5></div>
-    <div class="panel-body">
-        XTLS 模式通过减少冗余加密和握手次数，降低延迟，提高吞吐量。在高并发和短连接场景下，效率明显优于普通 TLS，同时保持数据安全性和隐蔽性。<hr />    </div>
-</div>
-<div class="panel panel-default">
     <div class="panel-heading"><h5>Clash 订阅被墙或无法下载如何绕过？</h5></div>
     <div class="panel-body">
         若订阅源被直接屏蔽，可尝试先在境外服务器上用代理代理获取订阅并通过中转服务器公开一个新的链接；或者使用 HTTPS 与 CDN 中转、或将订阅以文件形式托管在不易被封的云存储上。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Surfboard 的规则文件如何支持广告屏蔽？</h5></div>
-    <div class="panel-body">
-        规则文件可添加广告域名或 URL 列表，将请求重定向或阻断。结合策略组和自动更新，Surfboard 可实现全局广告屏蔽，提高浏览体验并节省带宽。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Mellow 能与 Clash 共存吗？</h5></div>
-    <div class="panel-body">
-        可以。Mellow 与 Clash 核心不同，前者采用透明代理技术，后者通过系统代理生效。两者配置端口不冲突的情况下可共存运行，用于不同的流量处理场景。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Shadowrocket 的节点测速结果如何应用？</h5></div>
@@ -349,14 +334,29 @@ x浏览器科学上网版宛如一把开启网络自由的利剑，轻盈而锋�
         节点测速结果可用于策略组选择和自动切换，程序会根据延迟和丢包率选择最优节点。这样访问海外网站或流媒体时，可以保持高速和稳定的网络体验。<hr />    </div>
 </div>
 <div class="panel panel-default">
+    <div class="panel-heading"><h5>SSR 是什么？它与 Shadowsocks 有何不同？</h5></div>
+    <div class="panel-body">
+        SSR（ShadowsocksR）是 Shadowsocks 的增强版本，增加了多种混淆与加密方式，提高了抗封锁能力。与原版相比，SSR 的兼容性更强，但目前已停止维护，许多用户正逐渐迁移到更先进的 V2Ray 或 Trojan 协议上。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>如何使用 Clash 配置订阅链接？</h5></div>
+    <div class="panel-body">
+        在 Clash 中添加订阅链接时，用户需复制提供的 URL 并在客户端的配置界面中粘贴。Clash 会自动下载并更新配置文件。通过订阅，用户可以一键更新节点信息，无需手动导入，适合长期维护多个节点来源的用户。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Surfboard 的规则文件如何支持广告屏蔽？</h5></div>
+    <div class="panel-body">
+        规则文件可添加广告域名或 URL 列表，将请求重定向或阻断。结合策略组和自动更新，Surfboard 可实现全局广告屏蔽，提高浏览体验并节省带宽。<hr />    </div>
+</div>
+<div class="panel panel-default">
     <div class="panel-heading"><h5>V2Ray 的 DNS 模块如何提升解析速度？</h5></div>
     <div class="panel-body">
         V2Ray 内置 DNS 模块支持并行解析，可同时请求多个上游 DNS 服务器。用户可配置本地优先解析或远程解析策略，从而减少域名污染与延迟问题。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>如何使用 Clash 配置订阅链接？</h5></div>
+    <div class="panel-heading"><h5>VLESS 的 XTLS 模式能提升传输效率吗？</h5></div>
     <div class="panel-body">
-        在 Clash 中添加订阅链接时，用户需复制提供的 URL 并在客户端的配置界面中粘贴。Clash 会自动下载并更新配置文件。通过订阅，用户可以一键更新节点信息，无需手动导入，适合长期维护多个节点来源的用户。    </div>
+        XTLS 模式通过减少冗余加密和握手次数，降低延迟，提高吞吐量。在高并发和短连接场景下，效率明显优于普通 TLS，同时保持数据安全性和隐蔽性。    </div>
 </div>
 <div class="panel panel-default mt-5">
     <div class="panel-heading">
@@ -405,15 +405,15 @@ x浏览器科学上网版宛如一把开启网络自由的利剑，轻盈而锋�
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2"><a href="/free-nodes/2026-10-4-free-node-subscribe.htm" title="「10月4日」最高速度22.8M/S，2025年Potatso Lite每天更新免费机场订阅分享">「10月4日」最高速度22.8M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/free-node-subscribe-links-2026-9-23.htm" title="「9月23日」最高速度19.9M/S，2025年Potatso Lite每天更新免费机场订阅分享">「9月23日」最高速度19.9M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-9-6-free-node-subscribe.htm" title="「9月6日」最高速度20.8M/S，2025年Potatso Lite每天更新免费机场订阅分享">「9月6日」最高速度20.8M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/free-node-subscribe-links-2026-10-1.htm" title="「10月1日」最高速度18.3M/S，2025年Potatso Lite每天更新免费机场订阅分享">「10月1日」最高速度18.3M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-9-20-free-subscribe-node.htm" title="「9月20日」最高速度18.6M/S，2025年Potatso Lite每天更新免费机场订阅分享">「9月20日」最高速度18.6M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-9-22-node-share.htm" title="「9月22日」最高速度20.9M/S，2025年Potatso Lite每天更新免费机场订阅分享">「9月22日」最高速度20.9M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-9-28-node-share.htm" title="「9月28日」最高速度21M/S，2025年Potatso Lite每天更新免费机场订阅分享">「9月28日」最高速度21M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/free-node-subscribe-links-2026-9-11.htm" title="「9月11日」最高速度19.1M/S，2025年Potatso Lite每天更新免费机场订阅分享">「9月11日」最高速度19.1M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
                         <li class="py-2"><a href="/free-nodes/free-high-speed-nodes-2026-9-13.htm" title="「9月13日」最高速度20.6M/S，2025年Potatso Lite每天更新免费机场订阅分享">「9月13日」最高速度20.6M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/free-node-subscribe-links-2026-9-19.htm" title="「9月19日」最高速度22.4M/S，2025年Potatso Lite每天更新免费机场订阅分享">「9月19日」最高速度22.4M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/free-node-subscribe-links-2026-9-17.htm" title="「9月17日」最高速度18.8M/S，2025年Potatso Lite每天更新免费机场订阅分享">「9月17日」最高速度18.8M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-9-12-free-node-subscribe.htm" title="「9月12日」最高速度19.2M/S，2025年Potatso Lite每天更新免费机场订阅分享">「9月12日」最高速度19.2M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-9-14-free-node-subscribe.htm" title="「9月14日」最高速度19.2M/S，2025年Potatso Lite每天更新免费机场订阅分享">「9月14日」最高速度19.2M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/free-high-speed-nodes-2026-10-3.htm" title="「10月3日」最高速度19.3M/S，2025年Potatso Lite每天更新免费机场订阅分享">「10月3日」最高速度19.3M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/free-node-subscribe-links-2026-9-25.htm" title="「9月25日」最高速度20.7M/S，2025年Potatso Lite每天更新免费机场订阅分享">「9月25日」最高速度20.7M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-10-2-node-share.htm" title="「10月2日」最高速度19.1M/S，2025年Potatso Lite每天更新免费机场订阅分享">「10月2日」最高速度19.1M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-9-18-free-subscribe-node.htm" title="「9月18日」最高速度18.6M/S，2025年Potatso Lite每天更新免费机场订阅分享">「9月18日」最高速度18.6M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/free-node-subscribe-links-2026-10-1.htm" title="「10月1日」最高速度18.3M/S，2025年Potatso Lite每天更新免费机场订阅分享">「10月1日」最高速度18.3M/S，2025年Potatso Lite每天更新免费机场订阅分享</a><hr /></li>
                     </ul>
     </div>
 </div>
@@ -425,7 +425,7 @@ x浏览器科学上网版宛如一把开启网络自由的利剑，轻盈而锋�
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">8</span> <a href="/date/2026-10/" title="2026-10 归档">2026-10</a></h4>
+                <h4><span class="badge" style="float: right;">15</span> <a href="/date/2026-10/" title="2026-10 归档">2026-10</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">29</span> <a href="/date/2026-09/" title="2026-09 归档">2026-09</a></h4>
